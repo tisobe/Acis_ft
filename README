@@ -9,9 +9,9 @@ These scripts are run as cronjobs on colossus:
 
 0 7 * * *    cd /data/mta/Script/Focal/Exc/; /data/mta/MTA/bin/acis_ft_wrap_script
   						> $HOME/Logs/focal.cron 2>&1
-0 8 * * *    cp /data/mta/www/mta_fp/Data/* /18/swolk/MTA/Focal/DATA/*
+#0 8 * * *    cp /data/mta/www/mta_fp/Data/* /18/swolk/MTA/Focal/DATA/*
   						> $HOME/Logs/cp_focal.cron 2>&1
-0 8 * * *    cp /data/mta/Script/Short_term/* /18/swolk/MTA/Focal/Short_term/*
+#0 8 * * *    cp /data/mta/Script/Short_term/* /18/swolk/MTA/Focal/Short_term/*
   						> $HOME/Logs/cp_short.cron 2>&1
 
 ########################

@@ -24,7 +24,7 @@ $data_dir	= '/data/mta/MTA/data/';
 $web_dir	= '/data/mta/www/mta_fp/';
 $house_keeping	= '/data/mta/www/mta_fp/house_keeping/';
 $data_out	= '/data/mta/www/mta_fp/Data/';
-$short_term	= '/data/mta/Script/Focal/Short_term/';
+$short_term	= '/data/mta/Script/ACIS/Focal/Short_term/';
 
 #$bin_dir 	= '/data/mta/Script/Focal/Develop/Focal/';
 #$data_dir	= '/data/mta/MTA/data/';
