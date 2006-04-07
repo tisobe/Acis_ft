@@ -256,7 +256,7 @@ foreach $ent (@new_list){
 #
 	@stmp1 = split(/_Dump_EM/, $ent);
 	@stmp2 = split(/\/dsops\/GOT\/input\//,$stmp1[0]);
-	system("/opt/local/bin/gzip -dc $ent |$bin_data/Acis_ft/getnrt -O $* | $bin_dir/acis_ft_fptemp.pl >> $short_term/data_$stmp2[1]");
+	system("/opt/local/bin/gzip -dc $ent |$data_dir/Acis_ft/getnrt -O $* | $bin_dir/acis_ft_fptemp.perl >> $short_term/data_$stmp2[1]");
 }
 close(OUT);
 #
