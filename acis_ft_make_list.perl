@@ -238,7 +238,7 @@ if($d3ago < 0) {
 
 $today = $time[7];
 
-open(OUT," >> $house_keeping/old_list_short");
+open(OUT,">>$house_keeping/old_list_short");
 
 foreach $ent (@new_list_org) {
 	print OUT "$ent\n";
