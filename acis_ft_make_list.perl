@@ -118,16 +118,25 @@ while(<FH>) {
         chomp $_;
 	$org_line = $_;
         @atemp = split(/\/dsops\/GOT\/input\//, $_);
-        @btemp = split(/ /, $atemp[0]);
+        @btemp = split(/\s+/, $atemp[0]);
         @ctemp = ();
+	$chk   = 0;
         foreach $word (@btemp) {
                 if($word =~ /\w/){
                         push(@ctemp, $word);
                 }
+		$chk++;
         }
-        $time = $ctemp[6];
-        $day  = $ctemp[5];
-        $lm   = $ctemp[4];
+	if($chk < 8){
+        	$time = $ctemp[6];
+        	$day  = $ctemp[5];
+        	$lm   = $ctemp[4];
+	}else{
+        	$time = $ctemp[7];
+        	$day  = $ctemp[6];
+        	$lm   = $ctemp[5];
+	}
+
         if($lm eq "Jan") {
                 $month = 1;
         }elsif($lm eq "Feb"){
