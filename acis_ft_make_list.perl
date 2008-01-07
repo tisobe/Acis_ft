@@ -7,7 +7,7 @@
 #											#
 #	author: Takashi Isobe	(tisobe@cfa.harvard.edu)				#
 #	first version: 3/14/00								#
-#	last update: Apr 06, 2006							#
+#	last update: Jan 07, 2008							#
 #											#
 #	You must set environment to: 							#
 #		setenv ACISTOOLSDIR /home/pgf						#
@@ -56,9 +56,15 @@ while(<FH>) {
 #
         @btemp = split(/\s+/, $atemp[0]);
 
-        $lm    = $btemp[4];
-        $cday  = $btemp[5];
-        $ctime = $btemp[6];
+	if($btemp[2] eq 'got'){
+        	$lm    = $btemp[5];
+        	$cday  = $btemp[6];
+        	$ctime = $btemp[7];
+	}else{
+        	$lm    = $btemp[4];
+        	$cday  = $btemp[5];
+        	$ctime = $btemp[6];
+	}
 
         if($lm eq "Jan") {
                 $cmonth = 1;
