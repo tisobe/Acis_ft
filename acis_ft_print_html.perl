@@ -6,7 +6,7 @@
 #											#
 #	author: t. isobe (tisobe@cfa.harvard.edu)					#
 #											#
-#	Last Update: Apr. 05, 2006							#
+#	Last Update: Oct. 09, 2008							#
 #											#
 #########################################################################################
 
@@ -164,19 +164,19 @@ print OUT '<P>';
 print OUT "\n";
 print OUT '<FONT SIZE=-1>';
 print OUT "\n";
-print OUT '<A HREF=./long_term_data>Long Term Data (Averaged)</A>';
+print OUT '<A HREF=./Data/long_term_data>Long Term Data (Averaged)</A>';
 print OUT "\n";
 print OUT '(DOM:FP Temp:Side A:Side B)';
 print OUT "\n";
 print OUT '<P>';
 print OUT "\n";
-print OUT '<A HREF=./month_data>Data for the Last 90 Days (about 5min avg)</A>';
+print OUT '<A HREF=./Data/month_data>Data for the Last 90 Days (about 5min avg)</A>';
 print OUT "\n";
 print OUT '(Year: DOY: FP Temp:Side A:Side B)';
 print OUT "\n";
 print OUT '<P>';
 print OUT "\n";
-print OUT '<A HREF=./week_data>Data for the Last 10 days</A>';
+print OUT '<A HREF=./Data/week_data>Data for the Last 10 days</A>';
 print OUT "\n";
 print OUT '(Year: DOY: FP Temp:Side A:Side B)';
 print OUT "\n";
