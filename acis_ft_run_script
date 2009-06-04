@@ -2,19 +2,19 @@ source /home/mta/.ascrc
 
 setenv ACISTOOLSDIR /home/pgf
 
-perl /data/mta/MTA/bin/acis_ft_make_list.perl
-perl /data/mta/MTA/bin/acis_ft_make_database.perl
+/opt/local/bin/perl /data/mta/MTA/bin/acis_ft_make_list.perl
+/opt/local/bin/perl /data/mta/MTA/bin/acis_ft_make_database.perl
 
-perl /data/mta/MTA/bin/acis_ft_plot_day.perl
-perl /data/mta/MTA/bin/acis_ft_plot_week.perl
-perl /data/mta/MTA/bin/acis_ft_plot_3day.perl
-perl /data/mta/MTA/bin/acis_ft_plot_month.perl
-perl /data/mta/MTA/bin/acis_ft_plot_3_month.perl
-perl /data/mta/MTA/bin/acis_ft_plot_long_term.perl
+/opt/local/bin/perl /data/mta/MTA/bin/acis_ft_plot_day.perl
+/opt/local/bin/perl /data/mta/MTA/bin/acis_ft_plot_week.perl
+/opt/local/bin/perl /data/mta/MTA/bin/acis_ft_plot_3day.perl
+/opt/local/bin/perl /data/mta/MTA/bin/acis_ft_plot_month.perl
+/opt/local/bin/perl /data/mta/MTA/bin/acis_ft_plot_3_month.perl
+/opt/local/bin/perl /data/mta/MTA/bin/acis_ft_plot_long_term.perl
 
 
-perl /data/mta/MTA/bin/acis_ft_diff_fp_plots.perl
-perl /data/mta/MTA/bin/acis_ft_print_html.perl
-perl /data/mta/MTA/bin/acis_ft_clean_month_data.perl
+/opt/local/bin/perl /data/mta/MTA/bin/acis_ft_diff_fp_plots.perl
+/opt/local/bin/perl /data/mta/MTA/bin/acis_ft_print_html.perl
+/opt/local/bin/perl /data/mta/MTA/bin/acis_ft_clean_month_data.perl
 
 rm day_list day3_list week_list month_list today_list new_list dir_list zout

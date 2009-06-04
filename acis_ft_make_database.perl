@@ -13,7 +13,7 @@
 #	OCt 24, 2005:   bugged out and changed data spacing				#
 #	Feb  2, 2006:	a bug related year change fixed					#
 #											#
-#	Last Update: Apr 06, 2006							#
+#	Last Update: Jun 04, 2009							#
 #											#
 #########################################################################################
 
@@ -80,7 +80,7 @@ system("cat /data/mta/Script/OBT/MJ/todays_data >> $data_out/mj_month_data");
 #
 #---- remove duplicated lines;
 #
-system("perl $bin_dir/acis_ft_rm_dupl.perl $data_out/mj_month_data");
+system("/opt/local/bin/perl $bin_dir/acis_ft_rm_dupl.perl $data_out/mj_month_data");
 system("mv ./zout $data_out/mj_month_data");
 
 @comp_date = ();
@@ -262,7 +262,7 @@ foreach $ent (@keep_data){
 }
 close(OUT);
 
-system("perl $bin_dir/acis_ft_rm_dupl.perl $data_out/long_term_data");
+system("/opt/local/bin/perl $bin_dir/acis_ft_rm_dupl.perl $data_out/long_term_data");
 
 #
 #---	here we start making a detail one week database		
@@ -369,7 +369,7 @@ close(OUT);
 #
 #--- remove duplicated lines
 #
-system("perl $bin_dir/acis_ft_rm_dupl.perl $data_out/week_data");
+system("/opt/local/bin/perl $bin_dir/acis_ft_rm_dupl.perl $data_out/week_data");
 
 #
 #--- Month long data
@@ -441,5 +441,5 @@ while(<FH>){
 #
 #--- remove duplicated lines
 #
-system("perl $bin_dir/acis_ft_rm_dupl.perl $data_out/month_data");
+system("/opt/local/bin/perl $bin_dir/acis_ft_rm_dupl.perl $data_out/month_data");
 
