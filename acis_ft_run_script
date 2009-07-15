@@ -8,19 +8,19 @@ set path = (/home/ascds/DS.release/bin/  $path)
 
 setenv ACISTOOLSDIR /home/pgf
 
-/proj/DS.ots/perl-5.10.0.SunOS5.8/bin/perl /data/mta/MTA/bin/acis_ft_make_list.perl
-/proj/DS.ots/perl-5.10.0.SunOS5.8/bin/perl /data/mta/MTA/bin/acis_ft_make_database.perl
+/opt/local/bin/perl /data/mta/MTA/bin/acis_ft_make_list.perl
+/opt/local/bin/perl /data/mta/MTA/bin/acis_ft_make_database.perl
 
-/proj/DS.ots/perl-5.10.0.SunOS5.8/bin/perl /data/mta/MTA/bin/acis_ft_plot_day.perl
-/proj/DS.ots/perl-5.10.0.SunOS5.8/bin/perl /data/mta/MTA/bin/acis_ft_plot_week.perl
-/proj/DS.ots/perl-5.10.0.SunOS5.8/bin/perl /data/mta/MTA/bin/acis_ft_plot_3day.perl
-/proj/DS.ots/perl-5.10.0.SunOS5.8/bin/perl /data/mta/MTA/bin/acis_ft_plot_month.perl
-/proj/DS.ots/perl-5.10.0.SunOS5.8/bin/perl /data/mta/MTA/bin/acis_ft_plot_3_month.perl
-/proj/DS.ots/perl-5.10.0.SunOS5.8/bin/perl /data/mta/MTA/bin/acis_ft_plot_long_term.perl
+/opt/local/bin/perl /data/mta/MTA/bin/acis_ft_plot_day.perl
+/opt/local/bin/perl /data/mta/MTA/bin/acis_ft_plot_week.perl
+/opt/local/bin/perl /data/mta/MTA/bin/acis_ft_plot_3day.perl
+/opt/local/bin/perl /data/mta/MTA/bin/acis_ft_plot_month.perl
+/opt/local/bin/perl /data/mta/MTA/bin/acis_ft_plot_3_month.perl
+/opt/local/bin/perl /data/mta/MTA/bin/acis_ft_plot_long_term.perl
 
 
-/proj/DS.ots/perl-5.10.0.SunOS5.8/bin/perl /data/mta/MTA/bin/acis_ft_diff_fp_plots.perl
-/proj/DS.ots/perl-5.10.0.SunOS5.8/bin/perl /data/mta/MTA/bin/acis_ft_print_html.perl
-/proj/DS.ots/perl-5.10.0.SunOS5.8/bin/perl /data/mta/MTA/bin/acis_ft_clean_month_data.perl
+/opt/local/bin/perl /data/mta/MTA/bin/acis_ft_diff_fp_plots.perl
+/opt/local/bin/perl /data/mta/MTA/bin/acis_ft_print_html.perl
+/opt/local/bin/perl /data/mta/MTA/bin/acis_ft_clean_month_data.perl
 
 rm day_list day3_list week_list month_list today_list new_list dir_list zout
