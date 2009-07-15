@@ -14,7 +14,7 @@ use PGPLOT;
 #				new database format					#
 #		Feb 15, 2004	added three month plots					#
 #											#
-#		Last Update: Apr. 06, 2006						#
+#		Last Update: Jul  15, 2009						#
 #											#
 #########################################################################################
 

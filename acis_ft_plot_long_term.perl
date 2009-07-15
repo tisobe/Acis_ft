@@ -9,7 +9,7 @@ use PGPLOT;
 #	March 14, 2000	first version							#
 #	July  28, 2000	modified original plot_ft.perl to adjust a new database		#
 #											#
-#	Last Update: Apr 06, 2006							#
+#	Last Update: Jul 15, 2009							#
 #											#
 #########################################################################################
 

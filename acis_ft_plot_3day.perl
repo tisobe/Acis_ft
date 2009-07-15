@@ -8,7 +8,7 @@ use PGPLOT;
 #	author: Takashi Isobe							#
 #	March 27, 2000	first version						#
 #										#
-#	Last Update: Apr 6, 2006						#
+#	Last Update: Jul 15, 2009						#
 #										#
 #################################################################################
 
