@@ -6,7 +6,7 @@
 #											#
 #	author: t. isobe (tisobe@cfa.harvard.edu)					#
 #											#
-#	Last Update: Oct. 09, 2008							#
+#	Last Update: Jun. 08, 2010							#
 #											#
 #########################################################################################
 
@@ -57,774 +57,98 @@ if ($uyear == 1999) {
 #
 open(OUT, ">$web_dir/main_fp_temp.html");
 
-print OUT '<HTML>';
-
-print OUT '<BODY TEXT="#FFFFFF" BGCOLOR="#000000" LINK="#00CCFF" VLINK="#B6FFFF" ALINK="#FF0000" background="./stars.jpg">';
-print OUT "\n";
-print OUT '<title> ACIS Focal Plane Temperature Plots </title>';
-print OUT "\n";
-print OUT '<CENTER><H1>ACIS Focal Plane Temperature Plots</CENTER>';
-print OUT "\n";
-print OUT '<CENTER><H1>Updated ';
-print OUT "$uyear-$month-$umday  ";
-print OUT "\n";
-print OUT "<br>";
 $utoday = $uyday + 1;
-print OUT "DAY OF YEAR: $utoday ";
-print OUT "\n";
-print OUT "<br>";
-print OUT "DAY OF MISSION: $dom ";
-print OUT '</H1></CENTER>';
-print OUT "\n";
-print OUT '<P>';
-print OUT "\n";
-print OUT '<HR>';
-print OUT "\n";
-print OUT '<br>',"\n";
-print OUT '<p><font color=yellow>Note: Due to instrumental problems, the focal temperature values ';
-print OUT 'taken between dates 2005:259.5 and 2005:289.5 are not reliable</font></p>',"\n";
-print OUT '<br>',"\n";
-print OUT '<TABLE BORDER=0 Cellspacing = 6 Cellpadding =10 Align=center>';
-print OUT "\n";
-print OUT '<TR>';
-print OUT "\n";
-print OUT '<TH></TH><TH>Focal Plane Temp</TH><TH colspan=2>(Focal Plane Temp - Cold Radiator) </TH>';
-print OUT "\n";
-print OUT '</TR>';
-print OUT "\n";
-print OUT '<TR>';
-print OUT "\n";
-print OUT '<TH>Entire Mission</TH><TD Align=center><A HREF=./fp_temp.html>Temp Plot</A></TD>';
-print OUT "\n";
-print OUT '                     <TD Align=center><A HREF=./entire_side_a.html>Side A</A></TD>';
-print OUT "\n";
-print OUT '                     <TD Align=center><A HREF=./entire_side_b.html>Side B</A></TD>';
-print OUT "\n";
-print OUT '</TR>';
-print OUT "\n";
-print OUT "<br><br>";
-print OUT '<TR>';
-print OUT "\n";
-print OUT '<TH>Past 3 Months</TH><TD Align=center><A HREF=./fp_month3_temp.html>Temp Plot</A></TD>';
-print OUT "\n";
-print OUT '                     <TD Align=center><A HREF=./month3_side_a.html>Side A</A></TD>';
-print OUT "\n";
-print OUT '                     <TD Align=center><A HREF=./month3_side_b.html>Side B</A></TD>';
-print OUT '</TR>';
-print OUT "\n";
-print OUT '<TR>';
-print OUT "\n";
-print OUT '<TH>Past Month</TH><TD Align=center><A HREF=./fp_month_temp.html>Temp Plot</A></TD>';
-print OUT "\n";
-print OUT '                     <TD Align=center><A HREF=./month_side_a.html>Side A</A></TD>';
-print OUT "\n";
-print OUT '                     <TD Align=center><A HREF=./month_side_b.html>Side B</A></TD>';
-print OUT "\n";
-print OUT '</TR>';
-print OUT "\n";
-print OUT '<TR>';
-print OUT "\n";
-print OUT '<TH>Past Week</TH><TD Align=center><A HREF=./fp_week_temp.html>Temp Plot</A></TD>';
-print OUT "\n";
-print OUT '                     <TD Align=center><A HREF=./week_side_a.html>Side A</A></TD>';
-print OUT "\n";
-print OUT '                     <TD Align=center><A HREF=./week_side_b.html>Side B</A></TD>';
-print OUT "\n";
-print OUT '</TR>';
-print OUT "\n";
-print OUT '<TR>';
-print OUT "\n";
-print OUT '<TH>Last 3 Days</TH><TD Align=center><A HREF=./fp_3day_temp.html>Temp Plot</A></TD>';
-print OUT "\n";
-print OUT '                     <TD Align=center><A HREF=./day3_side_a.html>Side A</A></TD>';
-print OUT "\n";
-print OUT '                     <TD Align=center><A HREF=./day3_side_b.html>Side B</A></TD>';
-print OUT "\n";
-print OUT '</TR>';
-print OUT "\n";
-print OUT '<TR>';
-print OUT "\n";
-print OUT '<TH>One Day</TH><TD Align=center><A HREF=./fp_day_temp.html>Temp Plot</A></TD>';
-print OUT "\n";
-print OUT '                     <TD Align=center><A HREF=./today_side_a.html>Side A</A></TD>';
-print OUT "\n";
-print OUT '                     <TD Align=center><A HREF=./today_side_b.html>Side B</A></TD>';
-print OUT "\n";
-print OUT '</TR>';
-print OUT "\n";
-print OUT '<TR></TR>';
-print OUT "\n";
-print OUT '<TR>';
-print OUT "\n";
-print OUT '</TR>';
-print OUT "\n";
-print OUT '</TABLE>';
-print OUT "\n";
-print OUT '<P>';
-print OUT "\n";
-print OUT '<FONT SIZE=-1>';
-print OUT "\n";
-print OUT '<A HREF=./Data/long_term_data>Long Term Data (Averaged)</A>';
-print OUT "\n";
-print OUT '(DOM:FP Temp:Side A:Side B)';
-print OUT "\n";
-print OUT '<P>';
-print OUT "\n";
-print OUT '<A HREF=./Data/month_data>Data for the Last 90 Days (about 5min avg)</A>';
-print OUT "\n";
-print OUT '(Year: DOY: FP Temp:Side A:Side B)';
-print OUT "\n";
-print OUT '<P>';
-print OUT "\n";
-print OUT '<A HREF=./Data/week_data>Data for the Last 10 days</A>';
-print OUT "\n";
-print OUT '(Year: DOY: FP Temp:Side A:Side B)';
-print OUT "\n";
 
-close(OUT);
-#
-#---- the entire range
-#
-open(OUT, ">$web_dir/fp_temp.html");
-
-print OUT '<HTML>';
-
-print OUT '<BODY TEXT="#FFFFFF" BGCOLOR="#000000" LINK="#00CCFF" VLINK="#B6FFFF" ALINK="#FF00
-00">';
-print OUT "\n";
-print OUT '<title> ACIS Focal Plane Temperature Plots </title>';
-print OUT "\n";
-print OUT '<CENTER><H1>ACIS Focal Plane Temperature Plots</CENTER>';
-print OUT "\n";
-print OUT '<CENTER><H1>Updated ';
-print OUT "$uyear-$month-$umday  ";
-print OUT "\n";
-print OUT "<br>";
-print OUT "DAY OF YEAR: $utoday ";
-print OUT "\n";
-print OUT "<br>";
-print OUT "DAY OF MISSION: $dom ";
-print OUT '</H1></CENTER>';
-print OUT "\n";
-print OUT '<P>';
-print OUT "\n";
-print OUT '<HR>';
-print OUT "\n";
-print OUT '<IMG SRC="./Figs/fp_temp.gif">';
-print OUT "\n";
-print OUT '</CENTER>';
-print OUT "\n";
-print OUT '';
-print OUT "\n";
-close(OUT);
-#
-#--- three months 
-#
-open(OUT, ">$web_dir/fp_month3_temp.html");
-
-print OUT '<HTML>';
-
-print OUT '<BODY TEXT="#FFFFFF" BGCOLOR="#000000" LINK="#00CCFF" VLINK="#B6FFFF" ALINK="#FF00
-00">';
-print OUT "\n";
-print OUT '<title> ACIS Focal Plane Temperature Plots (Three Months) </title>';
-print OUT "\n";
-print OUT '<CENTER><H1>ACIS Focal Plane Temperature Plots (Three Months)</CENTER>';
-print OUT "\n";
-print OUT '<CENTER><H1>Updated ';
-print OUT "$uyear-$month-$umday  ";
-print OUT "\n";
-print OUT "<br>";
-print OUT "DAY OF YEAR: $utoday ";
-print OUT "\n";
-print OUT "<br>";
-print OUT "DAY OF MISSION: $dom ";
-print OUT '</H1></CENTER>';
-print OUT "\n";
-print OUT '<P>';
-print OUT "\n";
-print OUT '<HR>';
-print OUT "\n";
-print OUT '<IMG SRC="./Figs/month3_plot.gif">';
-print OUT "\n";
-print OUT '</CENTER>';
-print OUT "\n";
-print OUT '';
-print OUT "\n";
-close(OUT);
-#
-#--- a month long
-#
-open(OUT, ">$web_dir/fp_month_temp.html");
-
-print OUT '<HTML>';
-
-print OUT '<BODY TEXT="#FFFFFF" BGCOLOR="#000000" LINK="#00CCFF" VLINK="#B6FFFF" ALINK="#FF00
-00">';
-print OUT "\n";
-print OUT '<title> ACIS Focal Plane Temperature Plots (Month) </title>';
-print OUT "\n";
-print OUT '<CENTER><H1>ACIS Focal Plane Temperature Plots (Month)</CENTER>';
-print OUT "\n";
-print OUT '<CENTER><H1>Updated ';
-print OUT "$uyear-$month-$umday  ";
-print OUT "\n";
-print OUT "<br>";
-print OUT "DAY OF YEAR: $utoday ";
-print OUT "\n";
-print OUT "<br>";
-print OUT "DAY OF MISSION: $dom ";
-print OUT '</H1></CENTER>';
-print OUT "\n";
-print OUT '<P>';
-print OUT "\n";
-print OUT '<HR>';
-print OUT "\n";
-print OUT '<IMG SRC="./Figs/month_plot.gif">';
-print OUT "\n";
-print OUT '</CENTER>';
-print OUT "\n";
-print OUT '';
-print OUT "\n";
-close(OUT);
-#
-#--- a week long
-#
-open(OUT, ">$web_dir/fp_week_temp.html");
-
-print OUT '<HTML>';
-
-print OUT '<BODY TEXT="#FFFFFF" BGCOLOR="#000000" LINK="#00CCFF" VLINK="#B6FFFF" ALINK="#FF00
-00">';
-print OUT "\n";
-print OUT '<title> ACIS Focal Plane Temperature Plots (A Week) </title>';
-print OUT "\n";
-print OUT '<CENTER><H1>ACIS Focal Plane Temperature Plots (A Week) </CENTER>';
-print OUT "\n";
-print OUT '<CENTER><H1>Updated ';
-print OUT "$uyear-$month-$umday  ";
-print OUT "\n";
-print OUT "<br>";
-print OUT "DAY OF YEAR: $utoday ";
-print OUT "\n";
-print OUT "<br>";
-print OUT "DAY OF MISSION: $dom ";
-print OUT '</H1></CENTER>';
-print OUT "\n";
-print OUT '<P>';
-print OUT "\n";
-print OUT '<HR>';
-print OUT "\n";
-print OUT '<IMG SRC="./Figs/week_plot.gif">';
-print OUT "\n";
-print OUT '</CENTER>';
-print OUT "\n";
-print OUT '';
-print OUT "\n";
-close(OUT);
-#
-#--- three day long
-#
-open(OUT, ">$web_dir/fp_3day_temp.html");
-
-print OUT '<HTML>';
-
-print OUT '<BODY TEXT="#FFFFFF" BGCOLOR="#000000" LINK="#00CCFF" VLINK="#B6FFFF" ALINK="#FF00
-00">';
-print OUT "\n";
-print OUT '<title> ACIS Focal Plane Temperature Plots (3 Days) </title>';
-print OUT "\n";
-print OUT '<CENTER><H1>ACIS Focal Plane Temperature Plots (3 Days) </CENTER>';
-print OUT "\n";
-print OUT '<CENTER><H1>Updated ';
-print OUT "$uyear-$month-$umday  ";
-print OUT "\n";
-print OUT "<br>";
-print OUT "DAY OF YEAR: $utoday ";
-print OUT "\n";
-print OUT "<br>";
-print OUT "DAY OF MISSION: $dom ";
-print OUT '</H1></CENTER>';
-print OUT "\n";
-print OUT '<P>';
-print OUT "\n";
-print OUT '<HR>';
-print OUT "\n";
-print OUT '<IMG SRC="./Figs/day3_plot.gif">';
-print OUT "\n";
-print OUT '</CENTER>';
-print OUT "\n";
-print OUT '';
-print OUT "\n";
-close(OUT);
-#
-#--- one day long
-#
-open(OUT, ">$web_dir/fp_day_temp.html");
-
-print OUT '<HTML>';
-
-print OUT '<BODY TEXT="#FFFFFF" BGCOLOR="#000000" LINK="#00CCFF" VLINK="#B6FFFF" ALINK="#FF00
-00">';
-print OUT "\n";
-print OUT '<title> ACIS Focal Plane Temperature Plots (Day) </title>';
-print OUT "\n";
-print OUT '<CENTER><H1>ACIS Focal Plane Temperature Plots (Day) </CENTER>';
-print OUT "\n";
-print OUT '<CENTER><H1>Updated ';
-print OUT "$uyear-$month-$umday  ";
-print OUT "\n";
-print OUT "<br>";
-print OUT "DAY OF YEAR: $utoday ";
-print OUT "\n";
-print OUT "<br>";
-print OUT "DAY OF MISSION: $dom ";
-print OUT '</H1></CENTER>';
-print OUT "\n";
-print OUT '<P>';
-print OUT "\n";
-print OUT '<HR>';
-print OUT "\n";
-print OUT '<IMG SRC="./Figs/day_plot.gif">';
-print OUT "\n";
-print OUT '</CENTER>';
-print OUT "\n";
-print OUT '';
-print OUT "\n";
-close(OUT);
-
-############ diff temp entire period
-#
-#--- entire range side A
-#
-open(OUT, ">$web_dir/entire_side_a.html");
-
-print OUT '<HTML>';
-
-print OUT '<BODY TEXT="#FFFFFF" BGCOLOR="#000000" LINK="#00CCFF" VLINK="#B6FFFF" ALINK="#FF00
-00">';
-print OUT "\n";
-print OUT '<title> ACIS Difference bewtween FP Temp and Cold Radiator A </title>';
-print OUT "\n";
-print OUT '<CENTER><H1> ACIS Difference bewtween FP Temp and Cold Radiator A  </CENTER>';
-print OUT "\n";
-print OUT '<CENTER><H1>Updated ';
-#print OUT "$uyear-$month-$umday  ";
-#print OUT "\n";
-#print OUT "<br>";
-#print OUT "DAY OF YEAR: $utoday ";
-#print OUT "\n";
-#print OUT "<br>";
-#print OUT "DAY OF MISSION: $dom ";
-print OUT '</H1></CENTER>';
-print OUT "\n";
-print OUT '<P>';
-print OUT "\n";
-print OUT '<HR>';
-print OUT "\n";
-print OUT '<IMG SRC="./Figs/entire_side_a.gif">';
-print OUT "\n";
-print OUT '</CENTER>';
-print OUT "\n";
-print OUT '';
-print OUT "\n";
-close(OUT);
-#
-#--- entire range side B
-#
-open(OUT, ">$web_dir/entire_side_b.html");
-
-print OUT '<HTML>';
-
-print OUT '<BODY TEXT="#FFFFFF" BGCOLOR="#000000" LINK="#00CCFF" VLINK="#B6FFFF" ALINK="#FF00
-00">';
-print OUT "\n";
-print OUT '<title> ACIS Difference bewtween FP Temp and Cold Radiator B </title>';
-print OUT "\n";
-print OUT '<CENTER><H1> ACIS Difference bewtween FP Temp and Cold Radiator B  </CENTER>';
-print OUT "\n";
-print OUT '<CENTER><H1>Updated ';
-#print OUT "$uyear-$month-$umday  ";
-#print OUT "\n";
-#print OUT "<br>";
-#print OUT "DAY OF YEAR: $utoday ";
-#print OUT "\n";
-#print OUT "<br>";
-#print OUT "DAY OF MISSION: $dom ";
-print OUT '</H1></CENTER>';
-print OUT "\n";
-print OUT '<P>';
-print OUT "\n";
-print OUT '<HR>';
-print OUT "\n";
-print OUT '<IMG SRC="./Figs/entire_side_b.gif">';
-print OUT "\n";
-print OUT '</CENTER>';
-print OUT "\n";
-print OUT '';
-print OUT "\n";
-close(OUT);
+print OUT "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\"> \n";
+print OUT " \n";
+print OUT "<html> \n";
+print OUT "<head> \n";
+print OUT "        <link rel=\"stylesheet\" type=\"text/css\" href=\"http://asc.harvard.edu/mta/REPORTS/Template/mta.css\" /> \n";
+print OUT "        <title> ACIS Focal Plane Temperature Plots </title> \n";
+print OUT " \n";
+print OUT "        <script language=\"JavaScript\"> \n";
+print OUT "                function WindowOpener(imgname) { \n";
+print OUT "                        msgWindow = open(\"\",\"displayname\",\"toolbar=no,directories=no,menubar=no,location=no,scrollbars=no,status=no,width=660,height=560,resize=no\"); \n";
+print OUT "                        msgWindow.document.clear(); \n";
+print OUT "                        msgWindow.document.write(\"<html><title>Trend plot:   \"+imgname+\"</title>\"); \n";
+print OUT "                        msgWindow.document.write(\"<body bgcolor='black'>\"); \n";
+print OUT "                        msgWindow.document.write(\"<img src='./Figs/\"+imgname+\"' border =0 ><p></p></body></html>\") \n";
+print OUT "                        msgWindow.document.close(); \n";
+print OUT "                        msgWindow.focus(); \n";
+print OUT "                } \n";
+print OUT "        </script> \n";
+print OUT " \n";
+print OUT "</head> \n";
+print OUT "<body> \n";
+print OUT "<h1>ACIS Focal Plane Temperature</h1> \n";
+print OUT " \n";
+print OUT "<h3 style='text-align:right'>Updated: $uyear-$month-$umday (DOY: $utoday / DOM: $dom)</h3> \n";
+print OUT " \n";
+print OUT "<hr /> \n";
+print OUT " \n";
+print OUT "<img src=\"./Figs/month_plot.gif\" width=\"500\" height=\"400\" style=\"padding-right:20%;padding-left:20%;padding-top:20px;padding-bottom:30px\"> \n";
+print OUT " \n";
+print OUT "<table border=0 cellspacing=8 cellpadding=5 align=\"center\"> \n";
+print OUT "<tr> \n";
+print OUT "<th>&#160</th><th>Focal Plane Temp</th><th colspan=2>(Focal Plane Temp - Cold Radiator)</th><th>Data</th> \n";
+print OUT "</tr> \n";
+print OUT "<tr> \n";
+print OUT "<th>Entire Mission</th> \n";
+print OUT "<td align=\"center\"><a href=\"javascript:WindowOpener('fp_temp.gif')\">Temp Plot</a></td> \n";
+print OUT "<td align=\"center\"><a href=\"javascript:WindowOpener('entire_side_a.gif')\">Side A</a></td> \n";
+print OUT "<td align=\"center\"><a href=\"javascript:WindowOpener('entire_side_b.gif')\">Side B</a></td> \n";
+print OUT "<td align=\"center\"><a href=\"./Data/long_term_data\" target=\"_blank\">Data</a></td> \n";
+print OUT "</tr> \n";
+print OUT "<tr> \n";
+print OUT "<th>Past 3 Months</th> \n";
+print OUT "<td align=\"center\"><a href=\"javascript:WindowOpener('month3_plot.gif')\">Temp Plot</a></td> \n";
+print OUT "<td align=\"center\"><a href=\"javascript:WindowOpener('month3_side_a.gif')\">Side A</a></td> \n";
+print OUT "<td align=\"center\"><a href=\"javascript:WindowOpener('month3_side_b.gif')\">Side B</a></td> \n";
+print OUT "<td align=\"center\"><a href=\"./Data/month_data\" target=\"_blank\">Data</a></td> \n";
+print OUT "</tr> \n";
+print OUT "<tr> \n";
+print OUT "<th>Past Month</th> \n";
+print OUT "<td align=\"center\"><a href=\"javascript:WindowOpener('month_plot.gif')\">Temp Plot</a></td> \n";
+print OUT "<td align=\"center\"><a href=\"javascript:WindowOpener('month_side_a.gif')\">Side A</a></td> \n";
+print OUT "<td align=\"center\"><a href=\"javascript:WindowOpener('month_side_b.gif')\">Side B</a></td> \n";
+print OUT "<td align=\"center\"><a href=\"./Data/month_data\" target=\"_blank\">Data</a></td> \n";
+print OUT "</tr> \n";
+print OUT "<tr> \n";
+print OUT "<th>Past Week</th> \n";
+print OUT "<td align=\"center\"><a href=\"javascript:WindowOpener('week_plot.gif')\">Temp Plot</a></td> \n";
+print OUT "<td align=\"center\"><a href=\"javascript:WindowOpener('week_side_a.gif')\">Side A</a></td> \n";
+print OUT "<td align=\"center\"><a href=\"javascript:WindowOpener('week_side_b.gif')\">Side B</a></td> \n";
+print OUT "<td align=\"center\"><a href=\"./Data/week_data\" target=\"_blank\">Data</a></td> \n";
+print OUT "</tr> \n";
+print OUT "<tr> \n";
+print OUT "<th>Last 3 Days</th> \n";
+print OUT "<td align=\"center\"><a href=\"javascript:WindowOpener('day3_plot.gif')\">Temp Plot</a></td> \n";
+print OUT "<td align=\"center\"><a href=\"javascript:WindowOpener('day3_side_a.gif')\">Side A</a></td> \n";
+print OUT "<td align=\"center\"><a href=\"javascript:WindowOpener('day3_side_b.gif')\">Side B</a></td> \n";
+print OUT "<td align=\"center\"><a href=\"./Data/week_data\" target=\"_blank\">Data</a></td> \n";
+print OUT "</tr> \n";
+print OUT "<tr> \n";
+print OUT "<th>One Day</th> \n";
+print OUT "<td align=\"center\"><a href=\"javascript:WindowOpener('day_plot.gif')\">Temp Plot</a></td> \n";
+print OUT "<td align=\"center\"><a href=\"javascript:WindowOpener('day_side_a.gif')\">Side A</a></td> \n";
+print OUT "<td align=\"center\"><a href=\"javascript:WindowOpener('day_side_b.gif')\">Side B</a></td> \n";
+print OUT "<td align=\"center\"><a href=\"./Data/week_data\" target=\"_blank\">Data</a></td> \n";
+print OUT "</tr> \n";
+print OUT "</table> \n";
+print OUT " \n";
+print OUT " \n";
+print OUT "<p style=\"padding-top:30px;color=yellow;font-size:90%\"><em> \n";
+ print OUT "<strong>Note:</strong> Due to instrumental problems, the focal temperature values taken between dates 2005:259.5 and 2005:289.5 are not reliable. \n";
+print OUT "</em> </p> \n";
+print OUT " \n";
+print OUT "<hr /> \n";
+print OUT "<p> \n";
+print OUT "If you have any questions about this page, please contact \n";
+print OUT "<a href=\"mailto:swolk@head.chfa.harvard.edu\">swolk@head.chfa.harvard.edu</a> \n";
+print OUT "</p> \n";
+print OUT "</body> \n";
+print OUT "</html> \n";
 
 
-############# diff temp three month
-#
-#---- 3 month side A
-#
-open(OUT, ">$web_dir/month3_side_a.html");
-
-print OUT '<HTML>';
-
-print OUT '<BODY TEXT="#FFFFFF" BGCOLOR="#000000" LINK="#00CCFF" VLINK="#B6FFFF" ALINK="#FF00
-00">';
-print OUT "\n";
-print OUT '<title> ACIS Difference bewtween FP Temp and Cold Radiator A (Three Months) </title>';
-print OUT "\n";
-print OUT '<CENTER><H1> ACIS Difference bewtween FP Temp and Cold Radiator A (Three Months) </CENTER>';
-print OUT "\n";
-print OUT '<CENTER><H1>Updated ';
-#print OUT "$uyear-$month-$umday  ";
-#print OUT "\n";
-#print OUT "<br>";
-#print OUT "DAY OF YEAR: $utoday ";
-#print OUT "\n";
-#print OUT "<br>";
-#print OUT "DAY OF MISSION: $dom ";
-print OUT '</H1></CENTER>';
-print OUT "\n";
-print OUT '<P>';
-print OUT "\n";
-print OUT '<HR>';
-print OUT "\n";
-print OUT '<IMG SRC="./Figs/month3_side_a.gif">';
-print OUT "\n";
-print OUT '</CENTER>';
-print OUT "\n";
-print OUT '';
-print OUT "\n";
-close(OUT);
-#
-#--- 3 month side B
-#
-open(OUT, ">$web_dir/month3_side_b.html");
-
-print OUT '<HTML>';
-
-print OUT '<BODY TEXT="#FFFFFF" BGCOLOR="#000000" LINK="#00CCFF" VLINK="#B6FFFF" ALINK="#FF00
-00">';
-print OUT "\n";
-print OUT '<title> ACIS Difference bewtween FP Temp and Cold Radiator B (Three Months) </title>';
-print OUT "\n";
-print OUT '<CENTER><H1> ACIS Difference bewtween FP Temp and Cold Radiator B (Three Months)  </CENTER>';
-print OUT "\n";
-print OUT '<CENTER><H1>Updated ';
-#print OUT "$uyear-$month-$umday  ";
-#print OUT "\n";
-#print OUT "<br>";
-#print OUT "DAY OF YEAR: $utoday ";
-#print OUT "\n";
-#print OUT "<br>";
-#print OUT "DAY OF MISSION: $dom ";
-print OUT '</H1></CENTER>';
-print OUT "\n";
-print OUT '<P>';
-print OUT "\n";
-print OUT '<HR>';
-print OUT "\n";
-print OUT '<IMG SRC="./Figs/month3_side_b.gif">';
-print OUT "\n";
-print OUT '</CENTER>';
-print OUT "\n";
-print OUT '';
-print OUT "\n";
-close(OUT);
-
-
-############# diff temp a month
-#
-#--- a month long side A
-#
-open(OUT, ">$web_dir/month_side_a.html");
-
-print OUT '<HTML>';
-
-print OUT '<BODY TEXT="#FFFFFF" BGCOLOR="#000000" LINK="#00CCFF" VLINK="#B6FFFF" ALINK="#FF00
-00">';
-print OUT "\n";
-print OUT '<title> ACIS Difference bewtween FP Temp and Cold Radiator A (Month) </title>';
-print OUT "\n";
-print OUT '<CENTER><H1> ACIS Difference bewtween FP Temp and Cold Radiator A (Month) </CENTER>';
-print OUT "\n";
-print OUT '<CENTER><H1>Updated ';
-#print OUT "$uyear-$month-$umday  ";
-#print OUT "\n";
-#print OUT "<br>";
-#print OUT "DAY OF YEAR: $utoday ";
-#print OUT "\n";
-#print OUT "<br>";
-#print OUT "DAY OF MISSION: $dom ";
-print OUT '</H1></CENTER>';
-print OUT "\n";
-print OUT '<P>';
-print OUT "\n";
-print OUT '<HR>';
-print OUT "\n";
-print OUT '<IMG SRC="./Figs/month_side_a.gif">';
-print OUT "\n";
-print OUT '</CENTER>';
-print OUT "\n";
-print OUT '';
-print OUT "\n";
-close(OUT);
-#
-#--- a month long side B
-#
-open(OUT, ">$web_dir/month_side_b.html");
-
-print OUT '<HTML>';
-
-print OUT '<BODY TEXT="#FFFFFF" BGCOLOR="#000000" LINK="#00CCFF" VLINK="#B6FFFF" ALINK="#FF00
-00">';
-print OUT "\n";
-print OUT '<title> ACIS Difference bewtween FP Temp and Cold Radiator B (Month) </title>';
-print OUT "\n";
-print OUT '<CENTER><H1> ACIS Difference bewtween FP Temp and Cold Radiator B (Month)  </CENTER>';
-print OUT "\n";
-print OUT '<CENTER><H1>Updated ';
-#print OUT "$uyear-$month-$umday  ";
-#print OUT "\n";
-#print OUT "<br>";
-#print OUT "DAY OF YEAR: $utoday ";
-#print OUT "\n";
-#print OUT "<br>";
-#print OUT "DAY OF MISSION: $dom ";
-print OUT '</H1></CENTER>';
-print OUT "\n";
-print OUT '<P>';
-print OUT "\n";
-print OUT '<HR>';
-print OUT "\n";
-print OUT '<IMG SRC="./Figs/month_side_b.gif">';
-print OUT "\n";
-print OUT '</CENTER>';
-print OUT "\n";
-print OUT '';
-print OUT "\n";
-close(OUT);
-
-##################### diff temp. a week
-#
-#--- a week long side A
-#
-open(OUT, ">$web_dir/week_side_a.html");
-
-print OUT '<HTML>';
-
-print OUT '<BODY TEXT="#FFFFFF" BGCOLOR="#000000" LINK="#00CCFF" VLINK="#B6FFFF" ALINK="#FF00
-00">';
-print OUT "\n";
-print OUT '<title> ACIS Difference bewtween FP Temp and Cold Radiator A (Week) </title>';
-print OUT "\n";
-print OUT '<CENTER><H1> ACIS Difference bewtween FP Temp and Cold Radiator A (Week)  </CENTER>';
-print OUT "\n";
-print OUT '<CENTER><H1>Updated ';
-#print OUT "$uyear-$month-$umday  ";
-#print OUT "\n";
-#print OUT "<br>";
-#print OUT "DAY OF YEAR: $utoday ";
-#print OUT "\n";
-#print OUT "<br>";
-#print OUT "DAY OF MISSION: $dom ";
-print OUT '</H1></CENTER>';
-print OUT "\n";
-print OUT '<P>';
-print OUT "\n";
-print OUT '<HR>';
-print OUT "\n";
-print OUT '<IMG SRC="./Figs/week_side_a.gif">';
-print OUT "\n";
-print OUT '</CENTER>';
-print OUT "\n";
-print OUT '';
-print OUT "\n";
-close(OUT);
-#
-#--- a week long side B
-#
-open(OUT, ">$web_dir/week_side_b.html");
-
-print OUT '<HTML>';
-
-print OUT '<BODY TEXT="#FFFFFF" BGCOLOR="#000000" LINK="#00CCFF" VLINK="#B6FFFF" ALINK="#FF00
-00">';
-print OUT "\n";
-print OUT '<title> ACIS Difference bewtween FP Temp and Cold Radiator B (Week) </title>';
-print OUT "\n";
-print OUT '<CENTER><H1> ACIS Difference bewtween FP Temp and Cold Radiator B (Week)  </CENTER>';
-print OUT "\n";
-print OUT '<CENTER><H1>Updated ';
-#print OUT "$uyear-$month-$umday  ";
-#print OUT "\n";
-#print OUT "<br>";
-#print OUT "DAY OF YEAR: $utoday ";
-#print OUT "\n";
-#print OUT "<br>";
-#print OUT "DAY OF MISSION: $dom ";
-print OUT '</H1></CENTER>';
-print OUT "\n";
-print OUT '<P>';
-print OUT "\n";
-print OUT '<HR>';
-print OUT "\n";
-print OUT '<IMG SRC="./Figs/week_side_b.gif">';
-print OUT "\n";
-print OUT '</CENTER>';
-print OUT "\n";
-print OUT '';
-print OUT "\n";
-close(OUT);
-
-########## diff temp. 3 days
-#
-#--- 3 day long side A
-#
-open(OUT, ">$web_dir/day3_side_a.html");
-
-print OUT '<HTML>';
-
-print OUT '<BODY TEXT="#FFFFFF" BGCOLOR="#000000" LINK="#00CCFF" VLINK="#B6FFFF" ALINK="#FF00
-00">';
-print OUT "\n";
-print OUT '<title> ACIS Difference bewtween FP Temp and Cold Radiator A (3 days) </title>';
-print OUT "\n";
-print OUT '<CENTER><H1> ACIS Difference bewtween FP Temp and Cold Radiator A (3 days)  </CENTER>';
-print OUT "\n";
-print OUT '<CENTER><H1>Updated ';
-#print OUT "$uyear-$month-$umday  ";
-#print OUT "\n";
-#print OUT "<br>";
-#print OUT "DAY OF YEAR: $utoday ";
-#print OUT "\n";
-#print OUT "<br>";
-#print OUT "DAY OF MISSION: $dom ";
-print OUT '</H1></CENTER>';
-print OUT "\n";
-print OUT '<P>';
-print OUT "\n";
-print OUT '<HR>';
-print OUT "\n";
-print OUT '<IMG SRC="./Figs/day3_side_a.gif">';
-print OUT "\n";
-print OUT '</CENTER>';
-print OUT "\n";
-print OUT '';
-print OUT "\n";
-close(OUT);
-#
-#--- 3 day long, side B
-#
-open(OUT, ">$web_dir/day3_side_b.html");
-
-print OUT '<HTML>';
-
-print OUT '<BODY TEXT="#FFFFFF" BGCOLOR="#000000" LINK="#00CCFF" VLINK="#B6FFFF" ALINK="#FF00
-00">';
-print OUT "\n";
-print OUT '<title> ACIS Difference bewtween FP Temp and Cold Radiator A </title>';
-print OUT "\n";
-print OUT '<CENTER><H1> ACIS Difference bewtween FP Temp and Cold Radiator B (3 days)  </CENTER>';
-print OUT "\n";
-print OUT '<CENTER><H1>Updated ';
-#print OUT "$uyear-$month-$umday  ";
-#print OUT "\n";
-#print OUT "<br>";
-#print OUT "DAY OF YEAR: $utoday ";
-#print OUT "\n";
-#print OUT "<br>";
-#print OUT "DAY OF MISSION: $dom ";
-print OUT '</H1></CENTER>';
-print OUT "\n";
-print OUT '<P>';
-print OUT "\n";
-print OUT '<HR>';
-print OUT "\n";
-print OUT '<IMG SRC="./Figs/day3_side_b.gif">';
-print OUT "\n";
-print OUT '</CENTER>';
-print OUT "\n";
-print OUT '';
-print OUT "\n";
-close(OUT);
-
-
-################## diff temp one day
-#
-#--- one day, side A
-#
-open(OUT, ">$web_dir/today_side_a.html");
-
-print OUT '<HTML>';
-
-print OUT '<BODY TEXT="#FFFFFF" BGCOLOR="#000000" LINK="#00CCFF" VLINK="#B6FFFF" ALINK="#FF00
-00">';
-print OUT "\n";
-print OUT '<title> ACIS Difference bewtween FP Temp and Cold Radiator A (Today) </title>';
-print OUT "\n";
-print OUT '<CENTER><H1> ACIS Difference bewtween FP Temp and Cold Radiator A (Today) </CENTER>';
-print OUT "\n";
-print OUT '<CENTER><H1>Updated ';
-#print OUT "$uyear-$month-$umday  ";
-#print OUT "\n";
-#print OUT "<br>";
-#print OUT "DAY OF YEAR: $utoday ";
-#print OUT "\n";
-#print OUT "<br>";
-#print OUT "DAY OF MISSION: $dom ";
-print OUT '</H1></CENTER>';
-print OUT "\n";
-print OUT '<P>';
-print OUT "\n";
-print OUT '<HR>';
-print OUT "\n";
-print OUT '<IMG SRC="./Figs/today_side_a.gif">';
-print OUT "\n";
-print OUT '</CENTER>';
-print OUT "\n";
-print OUT '';
-print OUT "\n";
-close(OUT);
-#
-#--- one day, side B
-#
-open(OUT, ">$web_dir/today_side_b.html");
-
-print OUT '<HTML>';
-
-print OUT '<BODY TEXT="#FFFFFF" BGCOLOR="#000000" LINK="#00CCFF" VLINK="#B6FFFF" ALINK="#FF00
-00">';
-print OUT "\n";
-print OUT '<title> ACIS Difference bewtween FP Temp and Cold Radiator B (Today) </title>';
-print OUT "\n";
-print OUT '<CENTER><H1> ACIS Difference bewtween FP Temp and Cold Radiator B (Today)  </CENTER>';
-print OUT "\n";
-print OUT '<CENTER><H1>Updated ';
-#print OUT "$uyear-$month-$umday  ";
-#print OUT "\n";
-#print OUT "<br>";
-#print OUT "DAY OF YEAR: $utoday ";
-#print OUT "\n";
-#print OUT "<br>";
-#print OUT "DAY OF MISSION: $dom ";
-print OUT '</H1></CENTER>';
-print OUT "\n";
-print OUT '<P>';
-print OUT "\n";
-print OUT '<HR>';
-print OUT "\n";
-print OUT '<IMG SRC="./Figs/today_side_a.gif">';
-print OUT "\n";
-print OUT '</CENTER>';
-print OUT "\n";
-print OUT '';
-print OUT "\n";
 close(OUT);
 
