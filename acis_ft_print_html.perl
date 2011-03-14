@@ -144,7 +144,7 @@ print OUT " \n";
 print OUT "<hr /> \n";
 print OUT "<p> \n";
 print OUT "If you have any questions about this page, please contact \n";
-print OUT "<a href=\"mailto:swolk@head.chfa.harvard.edu\">swolk@head.chfa.harvard.edu</a> \n";
+print OUT "<a href=\"mailto:swolk\@head.chfa.harvard.edu\">swolk\@head.chfa.harvard.edu</a> \n";
 print OUT "</p> \n";
 print OUT "</body> \n";
 print OUT "</html> \n";

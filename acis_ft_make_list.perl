@@ -7,7 +7,7 @@
 #											#
 #	author: Takashi Isobe	(tisobe@cfa.harvard.edu)				#
 #	first version: 3/14/00								#
-#	last update: Jan 07, 2008							#
+#	last update: Mar 14, 2011							#
 #											#
 #	You must set environment to: 							#
 #		setenv ACISTOOLSDIR /home/pgf						#
@@ -22,16 +22,9 @@
 $bin_dir 	= '/data/mta/MTA/bin/';
 $data_dir	= '/data/mta/MTA/data/';
 $web_dir	= '/data/mta/www/mta_fp/';
-$house_keeping	= '/data/mta/www/mta_fp/house_keeping/';
-$data_out	= '/data/mta/www/mta_fp/Data/';
+$house_keeping	= '/data/mta/Script/ACIS/Focal/house_keeping/';
+$data_out	= '/data/mta/Script/ACIS/Focal/Data/';
 $short_term	= '/data/mta/Script/ACIS/Focal/Short_term/';
-
-#$bin_dir 	= '/data/mta/Script/Focal/Develop/Focal/';
-#$data_dir	= '/data/mta/MTA/data/';
-#$house_keeping	= '/data/mta/Script/Focal/Develop/house_keeping/';
-#$short_term	= '/data/mta/Script/Focal/Develop/Short_term/';
-#$data_out	= '/data/mta/Script/Focal/Develop/Data/';
-#$web_dir	= '/data/mta/Script/Focal/Develop/web_dir/';
 
 open(OUT, ">./dir_list");
 print OUT "$bin_dir\n";
