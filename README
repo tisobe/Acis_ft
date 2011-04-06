@@ -14,6 +14,36 @@ These scripts are run as cronjobs on colossus:
 #0 8 * * *    cp /data/mta/Script/Short_term/* /18/swolk/MTA/Focal/Short_term/*
   						> $HOME/Logs/cp_short.cron 2>&1
 
+############
+Directories
+############
+
+the main list is kept in a script: acis_ft_make_list.perl. If needed, modify the directory list there. 
+
+$bin_dir        = '/data/mta/MTA/bin/';			
+			----- all scripts are kept here
+
+$data_dir       = '/data/mta/MTA/data/';
+			----- under ./Acis_ft/. Acis_ft related data and modules are kept
+
+$web_dir        = '/data/mta/www/mta_fp/';
+			----- web directory
+
+$house_keeping  = '/data/mta/Script/ACIS/Focal/house_keeping/';
+			----- house keeping files are kept here
+					old_list_short: a list of past data
+					keep_data:	a list of unprocessed data
+
+$data_out       = '/data/mta/Script/ACIS/Focal/Data/';
+			----- data directory
+					long_term_data: entire period
+					month_data:	3 months data
+					week_data:	10 days data
+					mj_month_data	mj data
+
+$short_term     = '/data/mta/Script/Focal/Short_term/';
+			----- keep short term data in full details.
+
 ########################
 Descriptions of scripts
 ########################
@@ -330,31 +360,4 @@ README
 ------
 This file.
 
-############
-Directories
-############
-
-$bin_dir        = '/data/mta/MTA/bin/';			
-			----- all scripts are kept here
-
-$data_dir       = '/data/mta/MTA/data/';
-			----- under ./Acis_ft/. Acis_ft related data and modules are kept
-
-$web_dir        = '/data/mta/www/mta_fp/';
-			----- web directory
-
-$house_keeping  = '/data/mta/www/mta_fp/house_keeping/';
-			----- house keeping files are kept here
-					old_list_short: a list of past data
-					keep_data:	a list of unprocessed data
-
-$data_out       = '/data/mta/www/mta_fp/Data/';
-			----- data directory
-					long_term_data: entire period
-					month_data:	3 months data
-					week_data:	10 days data
-					mj_month_data	mj data
-
-$short_term     = '/data/mta/Script/Focal/Short_term/';
-			----- keep short term data in full details.
 

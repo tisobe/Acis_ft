@@ -27,6 +27,7 @@ rm day_list day3_list week_list month_list today_list new_list dir_list zout
 
 chgrp mtagroup /data/mta_www/mta_temp/mta_fp/* 
 chgrp mtagroup /data/mta_www/mta_temp/mta_fp/Figs/* 
+chgrp mtagroup /data/mta/Script/ACIS/Focal/*
 chgrp mtagroup /data/mta/Script/ACIS/Focal/Data/*
 chgrp mtagroup /data/mta/Script/ACIS/Focal/Short_term/*
 
