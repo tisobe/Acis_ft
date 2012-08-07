@@ -6,7 +6,7 @@
 #											#
 #	author: t. isobe (tisobe@cfa.harvard.edu)					#
 #											#
-#	Last Update: Apr. 06, 2006							#
+#	Last Update: Aug. 01, 2012							#
 #											#
 #########################################################################################
 
@@ -14,19 +14,15 @@
 #
 #---- diretory setting
 #
-open(FH, './dir_list');
-@dir_list = ();
+$dir_list = '/data/mta/Script/ACIS/Focal/house_keeping/dir_list';
+open(FH, $dir_list);
 while(<FH>){
-        chomp $_;
-        push(@dir_list, $_);
+    chomp $_;
+    @atemp = split(/\s+/, $_);
+    ${$atemp[0]} = $atemp[1];
 }
 close(FH);
-$bin_dir        = $dir_list[0];
-$data_dir       = $dir_list[1];
-$house_keeping  = $dir_list[2];
-$short_term     = $dir_list[3];
-$data_out       = $dir_list[4];
-$web_dir        = $dir_list[5];
+
 
 #######################################################################################
 

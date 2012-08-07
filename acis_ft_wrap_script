@@ -1,1 +1,1 @@
-/bin/tcsh  < /data/mta/MTA/bin/acis_ft_run_script 
+/bin/tcsh  < /data/mta/Script/ACIS/Focal/Acis_ft/acis_ft_run_script 

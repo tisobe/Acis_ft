@@ -19,22 +19,14 @@
 #
 #---- directory setting
 #
-$bin_dir 	= '/data/mta/MTA/bin/';
-$data_dir	= '/data/mta/MTA/data/';
-$web_dir	= '/data/mta/www/mta_fp/';
-$house_keeping	= '/data/mta/Script/ACIS/Focal/house_keeping/';
-$data_out	= '/data/mta/Script/ACIS/Focal/Data/';
-$short_term	= '/data/mta/Script/ACIS/Focal/Short_term/';
-
-open(OUT, ">./dir_list");
-print OUT "$bin_dir\n";
-print OUT "$data_dir\n";
-print OUT "$house_keeping\n";
-print OUT "$short_term\n";
-print OUT "$data_out\n";
-print OUT "$web_dir\n";
-close(OUT);
-
+$dir_list = '/data/mta/Script/ACIS/Focal/house_keeping/dir_list';
+open(FH, $dir_list);
+while(<FH>){
+    chomp $_;
+    @atemp = split(/\s+/, $_);
+    ${$atemp[0]} = $atemp[1];
+}
+close(FH);
 #########################################################
 #
 #--- old_list_short contains a list of data previously read into the data
@@ -264,7 +256,7 @@ foreach $ent (@new_list){
 #
 	@stmp1 = split(/_Dump_EM/, $ent);
 	@stmp2 = split(/\/dsops\/GOT\/input\//,$stmp1[0]);
-	system("/opt/local/bin/gzip -dc $ent |$data_dir/Acis_ft/getnrt -O $* | $bin_dir/acis_ft_fptemp.perl >> $short_term/data_$stmp2[1]");
+	system("$op_dir/gzip -dc $ent |$data_dir/Acis_ft/getnrt -O $* | $bin_dir/acis_ft_fptemp.perl >> $short_term/data_$stmp2[1]");
 }
 close(OUT);
 #

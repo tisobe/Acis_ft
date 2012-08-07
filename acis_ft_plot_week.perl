@@ -8,7 +8,7 @@ use PGPLOT;
 #	author: Takashi Isobe							#
 #	March 27, 2000	first version						#
 #										#
-#	Last Update: Jul 15, 2009						#
+#	Last Update: Aug 01, 2009						#
 #										#
 #################################################################################
 
@@ -16,20 +16,14 @@ use PGPLOT;
 #
 #---- directory setting
 #
-open(FH, './dir_list');
-@dir_list = ();
+$dir_list = '/data/mta/Script/ACIS/Focal/house_keeping/dir_list';
+open(FH, $dir_list);
 while(<FH>){
-        chomp $_;
-        push(@dir_list, $_);
+    chomp $_;
+    @atemp = split(/\s+/, $_);
+    ${$atemp[0]} = $atemp[1];
 }
 close(FH);
-$bin_dir        = $dir_list[0];
-$data_dir       = $dir_list[1];
-$house_keeping  = $dir_list[2];
-$short_term     = $dir_list[3];
-$data_out       = $dir_list[4];
-$web_dir        = $dir_list[5];
-
 ##############################################################################
 
 @today = localtime(time);                       # find today's date
@@ -119,7 +113,7 @@ plot_fig();
 #
 #--- changing a ps-file to a gif-file
 #
-system("echo ''| /opt/local/bin/gs -sDEVICE=pgmraw -sOutputFile=- -g2100x2769 -r256x256 -q pgplot.ps| $bin_dir/pnmcrop| $bin_dir/pnmscale -xsize 500| $bin_dir/ppmquant 16| $bin_dir/pnmpad -white -l20 -r20 -t20 -b20| $bin_dir/pnmflip -r270| $bin_dir/ppmtogif > $web_dir/Figs/week_plot.gif");
+system("echo ''| $op_dir/gs -sDEVICE=pgmraw -sOutputFile=- -g2100x2769 -r256x256 -q pgplot.ps| $op_dir/pnmcrop| $op_dir/pnmscale -xsize 500| $op_dir/ppmquant 16| $op_dir/pnmpad -white -left=20 -right=20 -top=20 -bottom=20| $op_dir/pnmflip -r270| $op_dir/ppmtogif > $web_dir/Figs/week_plot.gif");
 
 system("rm pgplot.ps");
 

@@ -13,7 +13,7 @@
 #	OCt 24, 2005:   bugged out and changed data spacing				#
 #	Feb  2, 2006:	a bug related year change fixed					#
 #											#
-#	Last Update: Jun 04, 2009							#
+#	Last Update: Aug 01, 2012							#
 #											#
 #########################################################################################
 
@@ -21,20 +21,14 @@
 #
 #---- diretory setting
 #
-open(FH, './dir_list');
-@dir_list = ();
+$dir_list = '/data/mta/Script/ACIS/Focal/house_keeping/dir_list';
+open(FH, $dir_list);
 while(<FH>){
-        chomp $_;
-        push(@dir_list, $_);
+    chomp $_;
+    @atemp = split(/\s+/, $_);
+    ${$atemp[0]} = $atemp[1];
 }
 close(FH);
-$bin_dir        = $dir_list[0];
-$data_dir       = $dir_list[1];
-$house_keeping  = $dir_list[2];
-$short_term     = $dir_list[3];
-$data_out       = $dir_list[4];
-$web_dir        = $dir_list[5];
-
 #######################################################################################
 
 #
@@ -80,7 +74,7 @@ system("cat /data/mta/Script/OBT/MJ/todays_data >> $data_out/mj_month_data");
 #
 #---- remove duplicated lines;
 #
-system("/opt/local/bin/perl $bin_dir/acis_ft_rm_dupl.perl $data_out/mj_month_data");
+system("$op_dir/perl $bin_dir/acis_ft_rm_dupl.perl $data_out/mj_month_data");
 system("mv ./zout $data_out/mj_month_data");
 
 @comp_date = ();
@@ -262,7 +256,7 @@ foreach $ent (@keep_data){
 }
 close(OUT);
 
-system("/opt/local/bin/perl $bin_dir/acis_ft_rm_dupl.perl $data_out/long_term_data");
+system("$op_dir/perl $bin_dir/acis_ft_rm_dupl.perl $data_out/long_term_data");
 
 #
 #---	here we start making a detail one week database		
@@ -369,7 +363,7 @@ close(OUT);
 #
 #--- remove duplicated lines
 #
-system("/opt/local/bin/perl $bin_dir/acis_ft_rm_dupl.perl $data_out/week_data");
+system("$op_dir/perl $bin_dir/acis_ft_rm_dupl.perl $data_out/week_data");
 
 #
 #--- Month long data
@@ -441,5 +435,5 @@ while(<FH>){
 #
 #--- remove duplicated lines
 #
-system("/opt/local/bin/perl $bin_dir/acis_ft_rm_dupl.perl $data_out/month_data");
+system("$op_dir/perl $bin_dir/acis_ft_rm_dupl.perl $data_out/month_data");
 

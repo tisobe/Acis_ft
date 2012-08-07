@@ -1,29 +1,36 @@
+setenv HEADAS /soft/lheasoft/headas/x86_64-pc-linux;
+source $HEADAS/headas-init.csh
+
 source /home/mta/.ascrc
 
 rm -rf param
 mkdir param
+
 source /home/mta/bin/reset_param
-setenv PFILES "${PDIRS}" 
+
+setenv PFILES "${PDIRS}"
 set path = (/home/ascds/DS.release/bin/  $path)
+set path = (/home/ascds/DS.release/ots/bin/ $path)
+
 
 setenv ACISTOOLSDIR /home/pgf
 
-/opt/local/bin/perl /data/mta/MTA/bin/acis_ft_make_list.perl
-/opt/local/bin/perl /data/mta/MTA/bin/acis_ft_make_database.perl
+/usr/local/bin/perl /data/mta/Script/ACIS/Focal/Acis_ft/acis_ft_make_list.perl
+/usr/local/bin/perl /data/mta/Script/ACIS/Focal/Acis_ft/acis_ft_make_database.perl
 
-/opt/local/bin/perl /data/mta/MTA/bin/acis_ft_plot_day.perl
-/opt/local/bin/perl /data/mta/MTA/bin/acis_ft_plot_week.perl
-/opt/local/bin/perl /data/mta/MTA/bin/acis_ft_plot_3day.perl
-/opt/local/bin/perl /data/mta/MTA/bin/acis_ft_plot_month.perl
-/opt/local/bin/perl /data/mta/MTA/bin/acis_ft_plot_3_month.perl
-/opt/local/bin/perl /data/mta/MTA/bin/acis_ft_plot_long_term.perl
+/usr/local/bin/perl /data/mta/Script/ACIS/Focal/Acis_ft/acis_ft_plot_day.perl
+/usr/local/bin/perl /data/mta/Script/ACIS/Focal/Acis_ft/acis_ft_plot_week.perl
+/usr/local/bin/perl /data/mta/Script/ACIS/Focal/Acis_ft/acis_ft_plot_3day.perl
+/usr/local/bin/perl /data/mta/Script/ACIS/Focal/Acis_ft/acis_ft_plot_month.perl
+/usr/local/bin/perl /data/mta/Script/ACIS/Focal/Acis_ft/acis_ft_plot_3_month.perl
+/usr/local/bin/perl /data/mta/Script/ACIS/Focal/Acis_ft/acis_ft_plot_long_term.perl
 
 
-/opt/local/bin/perl /data/mta/MTA/bin/acis_ft_diff_fp_plots.perl
-/opt/local/bin/perl /data/mta/MTA/bin/acis_ft_print_html.perl
-/opt/local/bin/perl /data/mta/MTA/bin/acis_ft_clean_month_data.perl
+/usr/local/bin/perl /data/mta/Script/ACIS/Focal/Acis_ft/acis_ft_diff_fp_plots.perl
+/usr/local/bin/perl /data/mta/Script/ACIS/Focal/Acis_ft/acis_ft_print_html.perl
+/usr/local/bin/perl /data/mta/Script/ACIS/Focal/Acis_ft/acis_ft_clean_month_data.perl
 
-rm day_list day3_list week_list month_list today_list new_list dir_list zout
+rm day_list day3_list week_list month_list today_list new_list zout
 
 chgrp mtagroup /data/mta_www/mta_temp/mta_fp/* 
 chgrp mtagroup /data/mta_www/mta_temp/mta_fp/Figs/* 

@@ -3,7 +3,7 @@
 'ig00';
 #-----------------------------------------------------------------------
 #
-#   Module Name:    $Source: /proj/sot/ska/Scratch/jean/mta/CVS/Acis_ft/getnrt,v $
+#   Module Name:    $Source: /data/mta4/CVS/Acis_ft/getnrt,v $
 #
 #   Purpose:        Translate ASCDS telemetry frames to packets
 #
@@ -20,8 +20,8 @@
 #   Copyright:      Massachusetts Institute of Technology 1998
 #
 #   $Log: getnrt,v $
-#   Revision 1.1  2006/04/06 19:09:53  mta
-#   Initial revision
+#   Revision 1.1.1.1  2006/04/06 19:09:53  mta
+#   Imported sources
 #
 # Revision 1.7  1999/10/10  17:23:18  pgf
 # fix error in science frame time value
