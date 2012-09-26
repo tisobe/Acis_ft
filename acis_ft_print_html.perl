@@ -6,7 +6,7 @@
 #											#
 #	author: t. isobe (tisobe@cfa.harvard.edu)					#
 #											#
-#	Last Update: Aug. 01, 2012							#
+#	Last Update: Sep. 26, 2012							#
 #											#
 #########################################################################################
 
@@ -53,14 +53,20 @@ open(OUT, ">$web_dir/main_fp_temp.html");
 
 $utoday = $uyday + 1;
 
-print OUT "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\"> \n";
+print OUT "<!DOCTYPE html>\n";
 print OUT " \n";
 print OUT "<html> \n";
 print OUT "<head> \n";
+print OUT "        <meta http-equiv='Content-Type' content='text/html; charset=utf-8' />\n";
 print OUT "        <link rel=\"stylesheet\" type=\"text/css\" href=\"http://asc.harvard.edu/mta/REPORTS/Template/mta.css\" /> \n";
+print OUT "        <style  type='text/css'>\n";
+print OUT "        table{text-align:center;margin-left:auto;margin-right:auto;border-style:solid;border-spacing:8px;border-width:2px;border-collapse:separate}\n";
+print OUT "        td{text-align:center;padding:8px}\n";
+print OUT "        </style>\n";
+
 print OUT "        <title> ACIS Focal Plane Temperature Plots </title> \n";
 print OUT " \n";
-print OUT "        <script language=\"JavaScript\"> \n";
+print OUT "        <script> \n";
 print OUT "                function WindowOpener(imgname) { \n";
 print OUT "                        msgWindow = open(\"\",\"displayname\",\"toolbar=no,directories=no,menubar=no,location=no,scrollbars=no,status=no,width=660,height=560,resize=no\"); \n";
 print OUT "                        msgWindow.document.clear(); \n";
@@ -80,53 +86,53 @@ print OUT "<h3 style='text-align:right'>Updated: $uyear-$month-$umday (DOY: $uto
 print OUT " \n";
 print OUT "<hr /> \n";
 print OUT " \n";
-print OUT "<img src=\"./Figs/month_plot.gif\" width=\"500\" height=\"400\" style=\"padding-right:20%;padding-left:20%;padding-top:20px;padding-bottom:30px\"> \n";
+print OUT "<img src=\"./Figs/month_plot.gif\" width=\"500\" height=\"400\" style=\"text-align:center;display:block;margin-left:auto;margin-right:auto;padding-top:20px;padding-bottom:30px\" alt='Month long Focal Plane Temperature Plot'> \n";
 print OUT " \n";
-print OUT "<table border=0 cellspacing=8 cellpadding=5 align=\"center\"> \n";
+print OUT "<table  style='border-width:0px'> \n";
 print OUT "<tr> \n";
-print OUT "<th>&#160</th><th>Focal Plane Temp</th><th colspan=2>(Focal Plane Temp - Cold Radiator)</th><th>Data</th> \n";
+print OUT "<th>&#160;</th><th>Focal Plane Temp</th><th colspan=2>(Focal Plane Temp - Cold Radiator)</th><th>Data</th> \n";
 print OUT "</tr> \n";
 print OUT "<tr> \n";
 print OUT "<th>Entire Mission</th> \n";
-print OUT "<td align=\"center\"><a href=\"javascript:WindowOpener('fp_temp.gif')\">Temp Plot</a></td> \n";
-print OUT "<td align=\"center\"><a href=\"javascript:WindowOpener('entire_side_a.gif')\">Side A</a></td> \n";
-print OUT "<td align=\"center\"><a href=\"javascript:WindowOpener('entire_side_b.gif')\">Side B</a></td> \n";
-print OUT "<td align=\"center\"><a href=\"./Data/long_term_data\" target=\"_blank\">Data</a></td> \n";
+print OUT "<td><a href=\"javascript:WindowOpener('fp_temp.gif')\">Temp Plot</a></td> \n";
+print OUT "<td><a href=\"javascript:WindowOpener('entire_side_a.gif')\">Side A</a></td> \n";
+print OUT "<td><a href=\"javascript:WindowOpener('entire_side_b.gif')\">Side B</a></td> \n";
+print OUT "<td><a href=\"./Data/long_term_data\" target=\"_blank\">Data</a></td> \n";
 print OUT "</tr> \n";
 print OUT "<tr> \n";
 print OUT "<th>Past 3 Months</th> \n";
-print OUT "<td align=\"center\"><a href=\"javascript:WindowOpener('month3_plot.gif')\">Temp Plot</a></td> \n";
-print OUT "<td align=\"center\"><a href=\"javascript:WindowOpener('month3_side_a.gif')\">Side A</a></td> \n";
-print OUT "<td align=\"center\"><a href=\"javascript:WindowOpener('month3_side_b.gif')\">Side B</a></td> \n";
-print OUT "<td align=\"center\"><a href=\"./Data/month_data\" target=\"_blank\">Data</a></td> \n";
+print OUT "<td><a href=\"javascript:WindowOpener('month3_plot.gif')\">Temp Plot</a></td> \n";
+print OUT "<td><a href=\"javascript:WindowOpener('month3_side_a.gif')\">Side A</a></td> \n";
+print OUT "<td><a href=\"javascript:WindowOpener('month3_side_b.gif')\">Side B</a></td> \n";
+print OUT "<td><a href=\"./Data/month_data\" target=\"_blank\">Data</a></td> \n";
 print OUT "</tr> \n";
 print OUT "<tr> \n";
 print OUT "<th>Past Month</th> \n";
-print OUT "<td align=\"center\"><a href=\"javascript:WindowOpener('month_plot.gif')\">Temp Plot</a></td> \n";
-print OUT "<td align=\"center\"><a href=\"javascript:WindowOpener('month_side_a.gif')\">Side A</a></td> \n";
-print OUT "<td align=\"center\"><a href=\"javascript:WindowOpener('month_side_b.gif')\">Side B</a></td> \n";
-print OUT "<td align=\"center\"><a href=\"./Data/month_data\" target=\"_blank\">Data</a></td> \n";
+print OUT "<td><a href=\"javascript:WindowOpener('month_plot.gif')\">Temp Plot</a></td> \n";
+print OUT "<td><a href=\"javascript:WindowOpener('month_side_a.gif')\">Side A</a></td> \n";
+print OUT "<td><a href=\"javascript:WindowOpener('month_side_b.gif')\">Side B</a></td> \n";
+print OUT "<td><a href=\"./Data/month_data\" target=\"_blank\">Data</a></td> \n";
 print OUT "</tr> \n";
 print OUT "<tr> \n";
 print OUT "<th>Past Week</th> \n";
-print OUT "<td align=\"center\"><a href=\"javascript:WindowOpener('week_plot.gif')\">Temp Plot</a></td> \n";
-print OUT "<td align=\"center\"><a href=\"javascript:WindowOpener('week_side_a.gif')\">Side A</a></td> \n";
-print OUT "<td align=\"center\"><a href=\"javascript:WindowOpener('week_side_b.gif')\">Side B</a></td> \n";
-print OUT "<td align=\"center\"><a href=\"./Data/week_data\" target=\"_blank\">Data</a></td> \n";
+print OUT "<td><a href=\"javascript:WindowOpener('week_plot.gif')\">Temp Plot</a></td> \n";
+print OUT "<td><a href=\"javascript:WindowOpener('week_side_a.gif')\">Side A</a></td> \n";
+print OUT "<td><a href=\"javascript:WindowOpener('week_side_b.gif')\">Side B</a></td> \n";
+print OUT "<td><a href=\"./Data/week_data\" target=\"_blank\">Data</a></td> \n";
 print OUT "</tr> \n";
 print OUT "<tr> \n";
 print OUT "<th>Last 3 Days</th> \n";
-print OUT "<td align=\"center\"><a href=\"javascript:WindowOpener('day3_plot.gif')\">Temp Plot</a></td> \n";
-print OUT "<td align=\"center\"><a href=\"javascript:WindowOpener('day3_side_a.gif')\">Side A</a></td> \n";
-print OUT "<td align=\"center\"><a href=\"javascript:WindowOpener('day3_side_b.gif')\">Side B</a></td> \n";
-print OUT "<td align=\"center\"><a href=\"./Data/week_data\" target=\"_blank\">Data</a></td> \n";
+print OUT "<td><a href=\"javascript:WindowOpener('day3_plot.gif')\">Temp Plot</a></td> \n";
+print OUT "<td><a href=\"javascript:WindowOpener('day3_side_a.gif')\">Side A</a></td> \n";
+print OUT "<td><a href=\"javascript:WindowOpener('day3_side_b.gif')\">Side B</a></td> \n";
+print OUT "<td><a href=\"./Data/week_data\" target=\"_blank\">Data</a></td> \n";
 print OUT "</tr> \n";
 print OUT "<tr> \n";
 print OUT "<th>One Day</th> \n";
-print OUT "<td align=\"center\"><a href=\"javascript:WindowOpener('day_plot.gif')\">Temp Plot</a></td> \n";
-print OUT "<td align=\"center\"><a href=\"javascript:WindowOpener('day_side_a.gif')\">Side A</a></td> \n";
-print OUT "<td align=\"center\"><a href=\"javascript:WindowOpener('day_side_b.gif')\">Side B</a></td> \n";
-print OUT "<td align=\"center\"><a href=\"./Data/week_data\" target=\"_blank\">Data</a></td> \n";
+print OUT "<td><a href=\"javascript:WindowOpener('day_plot.gif')\">Temp Plot</a></td> \n";
+print OUT "<td><a href=\"javascript:WindowOpener('day_side_a.gif')\">Side A</a></td> \n";
+print OUT "<td><a href=\"javascript:WindowOpener('day_side_b.gif')\">Side B</a></td> \n";
+print OUT "<td><a href=\"./Data/week_data\" target=\"_blank\">Data</a></td> \n";
 print OUT "</tr> \n";
 print OUT "</table> \n";
 print OUT " \n";
