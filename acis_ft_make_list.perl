@@ -7,7 +7,7 @@
 #											#
 #	author: Takashi Isobe	(tisobe@cfa.harvard.edu)				#
 #	first version: 3/14/00								#
-#	last update: Mar 14, 2011							#
+#	last update: Oct 15, 2012							#
 #											#
 #	You must set environment to: 							#
 #		setenv ACISTOOLSDIR /home/pgf						#
@@ -28,6 +28,7 @@ while(<FH>){
 }
 close(FH);
 #########################################################
+
 #
 #--- old_list_short contains a list of data previously read into the data
 #
@@ -40,16 +41,14 @@ while(<FH>) {
 #--- first find the date that the file is created.
 #
         @btemp = split(/\s+/, $atemp[0]);
-
-	if($btemp[2] eq 'got'){
-        	$lm    = $btemp[5];
-        	$cday  = $btemp[6];
-        	$ctime = $btemp[7];
-	}else{
-        	$lm    = $btemp[4];
-        	$cday  = $btemp[5];
-        	$ctime = $btemp[6];
+	$pos   = 0;
+	foreach(@btemp){
+		$pos++;
 	}
+
+      	$time = $btemp[$pos-1];
+       	$day  = $btemp[$pos-2];
+       	$lm   = $btemp[$pos-3];
 
         if($lm eq "Jan") {
                 $cmonth = 1;
@@ -110,23 +109,14 @@ while(<FH>) {
 	$org_line = $_;
         @atemp = split(/\/dsops\/GOT\/input\//, $_);
         @btemp = split(/\s+/, $atemp[0]);
-        @ctemp = ();
-	$chk   = 0;
-        foreach $word (@btemp) {
-                if($word =~ /\w/){
-                        push(@ctemp, $word);
-                }
-		$chk++;
-        }
-	if($chk < 8){
-        	$time = $ctemp[6];
-        	$day  = $ctemp[5];
-        	$lm   = $ctemp[4];
-	}else{
-        	$time = $ctemp[7];
-        	$day  = $ctemp[6];
-        	$lm   = $ctemp[5];
+	$pos   = 0;
+	foreach(@btemp){
+		$pos++;
 	}
+
+      	$time = $btemp[$pos-1];
+       	$day  = $btemp[$pos-2];
+       	$lm   = $btemp[$pos-3];
 
         if($lm eq "Jan") {
                 $month = 1;
