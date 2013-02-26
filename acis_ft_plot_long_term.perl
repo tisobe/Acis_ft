@@ -9,15 +9,25 @@ use PGPLOT;
 #	March 14, 2000	first version							#
 #	July  28, 2000	modified original plot_ft.perl to adjust a new database		#
 #											#
-#	Last Update: Aug 01, 2012							#
+#	Last Update: Feb 25, 2013							#
 #											#
 #########################################################################################
+#
+#--- check whether this is a test
+#
+$comp_test = $ARGV[0];
+chomp $comp_test;
 
 #########################################################
 #
 #---- directory setting
 #
-$dir_list = '/data/mta/Script/ACIS/Focal/house_keeping/dir_list';
+if($comp_test =~ /test/i){
+	$dir_list = '/data/mta/Script/ACIS/Focal/house_keeping/dir_list_test';
+}else{
+	$dir_list = '/data/mta/Script/ACIS/Focal/house_keeping/dir_list';
+}
+
 open(FH, $dir_list);
 while(<FH>){
     chomp $_;

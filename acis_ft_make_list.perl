@@ -7,7 +7,7 @@
 #											#
 #	author: Takashi Isobe	(tisobe@cfa.harvard.edu)				#
 #	first version: 3/14/00								#
-#	last update: Oct 15, 2012							#
+#	last update: Feb 26, 2013							#
 #											#
 #	You must set environment to: 							#
 #		setenv ACISTOOLSDIR /home/pgf						#
@@ -15,11 +15,22 @@
 #											#
 #########################################################################################
 
+#
+#--- find whether this is a test case
+#
+
+$comp_test = $ARGV[0];
+chomp $comp_test;
+
 #########################################################
 #
 #---- directory setting
 #
-$dir_list = '/data/mta/Script/ACIS/Focal/house_keeping/dir_list';
+if($comp_test =~ /test/i){
+	$dir_list = '/data/mta/Script/ACIS/Focal/house_keeping/dir_list_test';
+}else{
+	$dir_list = '/data/mta/Script/ACIS/Focal/house_keeping/dir_list';
+}
 open(FH, $dir_list);
 while(<FH>){
     chomp $_;
@@ -32,11 +43,20 @@ close(FH);
 #
 #--- old_list_short contains a list of data previously read into the data
 #
-open(FH,"$house_keeping/old_list_short");
+if($comp_test =~ /test/i){
+	open(FH,"$web_dir/old_list_short");
+}else{
+	open(FH,"$house_keeping/old_list_short");
+}
+
 @old_list_short = ();			
 while(<FH>) {
         chomp $_;
-        @atemp = split(/\/dsops\/GOT\//, $_);
+	if($comp_test =~ /test/i){
+        	@atemp = split(/\/data\/mta\/Script\/ACIS\/Focal\/house_keeping\/Test_prep\/DS_data\//, $_);
+	}else{
+        	@atemp = split(/\/dsops\/GOT\//, $_);
+	}
 #
 #--- first find the date that the file is created.
 #
@@ -47,7 +67,7 @@ while(<FH>) {
 	}
 
       	$time = $btemp[$pos-1];
-       	$day  = $btemp[$pos-2];
+       	$cday = $btemp[$pos-2];
        	$lm   = $btemp[$pos-3];
 
         if($lm eq "Jan") {
@@ -87,7 +107,11 @@ while(<FH>) {
 #--- (remove: -rw-r--r--   1 got      59420898 Mar  2 09:54
 #---  and keep: /dsops/GOT/input/2006_088_2228_089_0409_Dump_EM_30564.gz)
 #
-        $dat_name = '/dsops/GOT/'."$atemp[1]";
+	if($comp_test =~ /test/i){
+        	$dat_name = '/data/mta/Script/ACIS/Focal/house_keeping/Test_prep/DS_data/'."$atemp[1]";
+	}else{
+        	$dat_name = '/dsops/GOT/'."$atemp[1]";
+	}
 	push(@old_list_short, $dat_name);
 }
 close(FH);
@@ -97,7 +121,11 @@ close(FH);
 #
 #--- create a list from /dsops/GOT/input (for a new list)
 #
-system("ls -ldtr  /dsops/GOT/input/*Dump_EM* > zztemp");
+if($comp_test =~ /test/i){
+	system("cp  $house_keeping/Test_prep/DS_data/ds_list  ./zztemp");
+}else{
+	system("ls -ldtr  /dsops/GOT/input/*Dump_EM* > zztemp");
+}
 
 open(FH,"./zztemp");
 @new_list     = ();
@@ -107,7 +135,12 @@ open(FH,"./zztemp");
 while(<FH>) {
         chomp $_;
 	$org_line = $_;
-        @atemp = split(/\/dsops\/GOT\/input\//, $_);
+	if($comp_test =~ /test/i){
+		@atemp = split(/\/data\/mta\/Script\/ACIS\/Focal\/house_keeping\/Test_prep\/DS_data\//, $_);
+	}else{
+       		@atemp = split(/\/dsops\/GOT\/input\//, $_);
+	}
+
         @btemp = split(/\s+/, $atemp[0]);
 	$pos   = 0;
 	foreach(@btemp){
@@ -147,7 +180,11 @@ while(<FH>) {
         @dtemp = split(/_/, $atemp[1]);
         $year  = $dtemp[0];
 
-        $dat_name = '/dsops/GOT/input/'."$atemp[1]";
+	if($comp_test =~ /test/i){
+        	$dat_name = "$house_keeping".'Test_prep/DS_data/'."$atemp[1]";
+	}else{
+        	$dat_name = '/dsops/GOT/input/'."$atemp[1]";
+	}
 	@ftemp    = split(/_Dump_EM/, $atemp[1]);
 #
 #--- here we are comparing date of file creating. if there are
@@ -186,10 +223,17 @@ close(FH);
 #
 @new_list = sort(@new_list);
 system("rm zztemp");		
+
 #
 #--- today's date
 #
-@time  = localtime(time);
+
+if($comp_test =~ /test/i){
+	@time = (0, 0, 0, 24, 1, 113, 1, 56, 0);
+}else{
+	@time  = localtime(time);
+}
+
 $cyear = $time[5] + 1900;
 $add   = 365*($cyear - 2000);
 
@@ -228,7 +272,11 @@ if($d3ago < 0) {
 
 $today = $time[7];
 
-open(OUT,">>$house_keeping/old_list_short");
+if($comp_test =~ /test/i){
+	open(OUT,">>$web_dir/old_list_short");
+}else{
+	open(OUT,">>$house_keeping/old_list_short");
+}
 
 foreach $ent (@new_list_org) {
 	print OUT "$ent\n";
@@ -245,7 +293,11 @@ foreach $ent (@new_list){
 #--- following is Peter Ford (pgf@space.mit.edu) script to extract data from dump data
 #
 	@stmp1 = split(/_Dump_EM/, $ent);
-	@stmp2 = split(/\/dsops\/GOT\/input\//,$stmp1[0]);
+	if($comp_test =~ /test/i){
+		@stmp2 = split(/\/data\/mta\/Script\/ACIS\/Focal\/house_keeping\/Test_prep\/DS_data\//,$stmp1[0]);
+	}else{
+		@stmp2 = split(/\/dsops\/GOT\/input\//,$stmp1[0]);
+	}
 	system("$op_dir/gzip -dc $ent |$data_dir/Acis_ft/getnrt -O $* | $bin_dir/acis_ft_fptemp.perl >> $short_term/data_$stmp2[1]");
 }
 close(OUT);
@@ -257,7 +309,11 @@ close(OUT);
 @d3_list = ();
 foreach $ent (@old_list_short) {
 	@atemp = split(/_/,$ent);
-	@btemp = split(/input\//, $atemp[0]);
+	if($comp_test =~ /test/i){
+		@btemp = split(/DS_data\//, $atemp[0]);
+	}else{
+		@btemp = split(/input\//,   $atemp[0]);
+	}
 	if($m_ch == 0) {
 		if($btemp[1] >= $cyear && $atemp[1] >= $m_ago) {
 			push(@m_list, $ent);	# m_list: month data list
@@ -305,7 +361,15 @@ foreach $ent (@old_list_short) {
 
 @t_list = reverse (@old_list_short);
 $last   = shift(@t_list);		
-@btemp  = split(/_/,$last);
+if($comp_test =~ /test/i){
+	@ctemp = split(/DS_data\//, $last);
+	$lval  = $ctemp[1];
+}else{
+#	@ctemp = split(/input\//, $last);
+	$lval  = $last;
+}
+
+@btemp  = split(/_/,$lval);
 $cyear  = $btemp[0];
 $cday   = $btemp[3];
 @btemp  = split(//, $btemp[4]);
@@ -315,8 +379,16 @@ $cmin   = "$btemp[2]"."$btemp[3]";
 push(@d_list, $last);
 
 OUTER:
-foreach $ent(@t_list) {
-	@ctemp = split(/_/,$ent);
+foreach $ent (@t_list) {
+	if($comp_test =~ /test/i){
+		@ctemp = split(/DS_data\//, $ent);
+		$ent2 = $ctemp[1];
+	}else{
+		@ctemp = split(/input\//, $ent);
+#		$ent2 = $ctemp[1];
+		$ent2 = $ent;
+	}
+	@ctemp = split(/_/,$ent2);
 	$year  = $ctemp[0];
 	$day   = $ctemp[3];
 	@ctemp = split(//,$ctemp[4]);
@@ -342,11 +414,16 @@ foreach $ent(@t_list) {
 #
 open(OUT,">./month_list");
 foreach $data (@m_list){
-	@atemp = split(/\//,$data);
-	if($atemp[3] eq 'input') {
-		$ztemp = $atemp[4];
+	if($comp_test =~ /test/i){
+		@ctemp = split('DS_data\/', $data);
+		$ztemp = $ctemp[1];
 	}else{
-		$ztemp = $atemp[3];
+		@atemp = split(/\//,$data);
+		if($atemp[3] eq 'input') {
+			$ztemp = $atemp[4];
+		}else{
+			$ztemp = $atemp[3];
+		}
 	}
 	@btemp = split(/_Dump_EM_/,$ztemp);
 	$dname = 'data_'."$btemp[0]";
@@ -359,11 +436,16 @@ close(OUT);
 #
 open(OUT,">./week_list");
 foreach $data (@w_list){
-	@atemp = split(/\//,$data);
-	if($atemp[3] eq 'input') {
-		$ztemp = $atemp[4];
+	if($comp_test =~ /test/i){
+		@ctemp = split('DS_data\/', $data);
+		$ztemp = $ctemp[1];
 	}else{
-		$ztemp = $atemp[3];
+		@atemp = split(/\//,$data);
+		if($atemp[3] eq 'input') {
+			$ztemp = $atemp[4];
+		}else{
+			$ztemp = $atemp[3];
+		}
 	}
 	@btemp = split(/_Dump_EM_/,$ztemp);
 	$dname = 'data_'."$btemp[0]";
@@ -375,11 +457,16 @@ close(OUT);
 #
 open(OUT,">./day3_list");
 foreach $data (@d3_list){
-	@atemp = split(/\//,$data);
-	if($atemp[3] eq 'input') {
-		$ztemp = $atemp[4];
+	if($comp_test =~ /test/i){
+		@ctemp = split('DS_data\/', $data);
+		$ztemp = $ctemp[1];
 	}else{
-		$ztemp = $atemp[3];
+		@atemp = split(/\//,$data);
+		if($atemp[3] eq 'input') {
+			$ztemp = $atemp[4];
+		}else{
+			$ztemp = $atemp[3];
+		}
 	}
 	@btemp = split(/_Dump_EM_/,$ztemp);
 	$dname = 'data_'."$btemp[0]";
@@ -391,11 +478,16 @@ close(OUT);
 #
 open(OUT,">./day_list");
 foreach $data(@d_list){
-	@atemp = split(/\//,$data);
-	if($atemp[3] eq 'input') {
-		$ztemp = $atemp[4];
+	if($comp_test =~ /test/i){
+		@ctemp = split('DS_data\/', $data);
+		$ztemp = $ctemp[1];
 	}else{
-		$ztemp = $atemp[3];
+		@atemp = split(/\//,$data);
+		if($atemp[3] eq 'input') {
+			$ztemp = $atemp[4];
+		}else{
+			$ztemp = $atemp[3];
+		}
 	}
 	@btemp = split(/_Dump_EM_/,$ztemp);
 	$dname = 'data_'."$btemp[0]";

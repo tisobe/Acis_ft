@@ -8,15 +8,25 @@ use PGPLOT;
 #	author: Takashi Isobe							#
 #	March 27, 2000	first version						#
 #										#
-#	Last Update: Aug 01, 2009						#
+#	Last Update: Feb 25, 2013						#
 #										#
 #################################################################################
+
+#
+#--- check whether this is a test
+#
+$comp_test = $ARGV[0];
+chomp $comp_test;
 
 ##############################################################################
 #
 #---- directory setting
 #
-$dir_list = '/data/mta/Script/ACIS/Focal/house_keeping/dir_list';
+if($comp_test =~ /test/i){
+	$dir_list = '/data/mta/Script/ACIS/Focal/house_keeping/dir_list_test';
+}else{
+	$dir_list = '/data/mta/Script/ACIS/Focal/house_keeping/dir_list';
+}
 open(FH, $dir_list);
 while(<FH>){
     chomp $_;
@@ -26,7 +36,11 @@ while(<FH>){
 close(FH);
 ##############################################################################
 
-@today = localtime(time);                       # find today's date
+if($comp_test =~ /test/i){
+	@today =  (0, 0, 0, 24, 1, 113, 1, 56, 0);
+}else{
+	@today = localtime(time);                       # find today's date
+}
 $day   = $today[7];
 $year  = $today[5]+ 1900;
 

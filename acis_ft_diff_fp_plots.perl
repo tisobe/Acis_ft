@@ -14,15 +14,25 @@ use PGPLOT;
 #				new database format					#
 #		Feb 15, 2004	added three month plots					#
 #											#
-#		Last Update: Aug 01, 2012						#
+#		Last Update: Feb 25, 2013						#
 #											#
 #########################################################################################
+#
+#--- check whether this is a test case
+#
+$comp_test = $ARGV[0];
+chomp $comp_test;
+
 
 ##############################################################################
 #
 #---- directory setting
 #
-$dir_list = '/data/mta/Script/ACIS/Focal/house_keeping/dir_list';
+if($comp_test =~ /test/i){
+	$dir_list = '/data/mta/Script/ACIS/Focal/house_keeping/dir_list_test';
+}else{
+	$dir_list = '/data/mta/Script/ACIS/Focal/house_keeping/dir_list';
+}
 open(FH, $dir_list);
 while(<FH>){
     chomp $_;
@@ -35,7 +45,11 @@ close(FH);
 #
 #-- find today's date
 #
-@time  = localtime(time);
+if($comp_test =~ /test/i){
+	@time =  (0, 0, 0, 24, 1, 113, 1, 56, 0);
+}else{
+	@time  = localtime(time);
+}
 $year  = $time[5] + 1900;
 $add   = 365 * ($year - 2000);
 $lyear = $year -1;

@@ -13,15 +13,25 @@
 #	OCt 24, 2005:   bugged out and changed data spacing				#
 #	Feb  2, 2006:	a bug related year change fixed					#
 #											#
-#	Last Update: Aug 01, 2012							#
+#	Last Update: Feb 25, 2013							#
 #											#
 #########################################################################################
+
+#
+#-- check whether this is a test case
+#
+$comp_test = $ARGV[0];
+chomp $comp_test;
 
 #######################################################################################
 #
 #---- diretory setting
 #
-$dir_list = '/data/mta/Script/ACIS/Focal/house_keeping/dir_list';
+if($comp_test =~ /test/i){
+	$dir_list = '/data/mta/Script/ACIS/Focal/house_keeping/dir_list_test';
+}else{
+	$dir_list = '/data/mta/Script/ACIS/Focal/house_keeping/dir_list';
+}
 open(FH, $dir_list);
 while(<FH>){
     chomp $_;
@@ -34,8 +44,12 @@ close(FH);
 #
 #--- find today's date
 #
+if($comp_test =~ /test/i){
+	@today =  (0, 0, 0, 24, 1, 113, 1, 56, 0);
+}else{
+	@today  = localtime(time);
+}
 
-@today  = localtime(time);
 $day    = $today[7];
 $year   = $today[5];
 $year  += 1900;
@@ -70,12 +84,15 @@ if($week_ago < 1) {
 #--- todays_data contains only one day amount of data for radiator temperatures	
 #
 
-system("cat /data/mta/Script/OBT/MJ/todays_data >> $data_out/mj_month_data");
+if($comp_test !~ /test/i){
+	system("cat /data/mta/Script/OBT/MJ/todays_data >> $data_out/mj_month_data");
+
 #
 #---- remove duplicated lines;
 #
-system("$op_dir/perl $bin_dir/acis_ft_rm_dupl.perl $data_out/mj_month_data");
-system("mv ./zout $data_out/mj_month_data");
+	system("$op_dir/perl $bin_dir/acis_ft_rm_dupl.perl $data_out/mj_month_data");
+	system("mv ./zout $data_out/mj_month_data");
+}
 
 @comp_date = ();
 @comp_year = ();
@@ -133,12 +150,14 @@ system("mv ./temp_month_data $data_out/mj_month_data");
 #---   find unproccessed data and add back to the list
 #
 @data_list = ();		
-open(FH, "$house_keeping/keep_data");
-while(<FH>){
-	chomp $_;
-	push(@data_list, $_);
+if($comp_test !~ /test/i){
+	open(FH, "$house_keeping/keep_data");
+	while(<FH>){
+		chomp $_;
+		push(@data_list, $_);
+	}
+	close(FH);
 }
-close(FH);
 #
 #--- add new data name to data_list
 #
@@ -250,11 +269,13 @@ close(OUT);
 #
 #--- keep the un-analyzed data file names in keep_data file
 #
-open(OUT,">$hosue_keeping/keep_data"); 
-foreach $ent (@keep_data){
-	print OUT "$ent\n";
+if($comp_test !~ /test/i){
+	open(OUT,">$hosue_keeping/keep_data"); 
+	foreach $ent (@keep_data){
+		print OUT "$ent\n";
+	}
+	close(OUT);
 }
-close(OUT);
 
 system("$op_dir/perl $bin_dir/acis_ft_rm_dupl.perl $data_out/long_term_data");
 
