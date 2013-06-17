@@ -1,4 +1,4 @@
-#/usr/bin/perl
+#!/usr/bin/env /usr/local/bin/perl
 use PGPLOT;
 
 #########################################################################################
@@ -9,7 +9,7 @@ use PGPLOT;
 #	March 14, 2000	first version							#
 #	July  28, 2000	modified original plot_ft.perl to adjust a new database		#
 #											#
-#	Last Update: Feb 25, 2013							#
+#	Last Update: Apr 16, 2013							#
 #											#
 #########################################################################################
 #
@@ -79,9 +79,9 @@ plot_fig();
 #
 #--- changing a ps-file to a gif-file
 #
-system("echo ''| $op_dir/gs -sDEVICE=pgmraw -sOutputFile=- -g2100x2769 -r256x256 -q pgplot.ps| $op_dir/pnmcrop| $op_dir/pnmscale -xsize 500| $op_dir/ppmquant 16| $op_dir/pnmpad -white -left=20 -right=20 -top=20 -bottom=20| $op_dir/pnmflip -r270| $op_dir/ppmtogif > $web_dir/Figs/fp_temp.gif");
+system("echo ''| gs -sDEVICE=pgmraw -sOutputFile=- -g2100x2769 -r256x256 -q pgplot.ps|  pnmscale -xsize 500| ppmquant 16| pnmpad -white -left=20 -right=20 -top=20 -bottom=20| pnmflip -r270| ppmtogif > $web_dir/Figs/fp_temp.gif");
 
-system("rm pgplot.ps");
+system("rm -rf pgplot.ps");
 
 ##################################
 ### plot_fig: plotting routine ###

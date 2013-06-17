@@ -1,4 +1,4 @@
-#!/usr/bin/perl
+#!/usr/bin/env /usr/local/bin/perl
 
 #########################################################################################
 #											#
@@ -7,7 +7,7 @@
 #											#
 #	author: Takashi Isobe	(tisobe@cfa.harvard.edu)				#
 #	first version: 3/14/00								#
-#	last update: Feb 26, 2013							#
+#	last update: May 15, 2013							#
 #											#
 #	You must set environment to: 							#
 #		setenv ACISTOOLSDIR /home/pgf						#
@@ -222,7 +222,7 @@ close(FH);
 #--- sort accroding to file name
 #
 @new_list = sort(@new_list);
-system("rm zztemp");		
+system("rm -rf zztemp");		
 
 #
 #--- today's date
@@ -298,7 +298,8 @@ foreach $ent (@new_list){
 	}else{
 		@stmp2 = split(/\/dsops\/GOT\/input\//,$stmp1[0]);
 	}
-	system("$op_dir/gzip -dc $ent |$data_dir/Acis_ft/getnrt -O $* | $bin_dir/acis_ft_fptemp.perl >> $short_term/data_$stmp2[1]");
+#	system("gzip -dc $ent |$data_dir/Acis_ft/getnrt -O $*  | $bin_dir/acis_ft_fptemp.perl >> $short_term/data_$stmp2[1]");
+	system("gzip -dc $ent |$data_dir/Acis_ft/getnrt -O  | $bin_dir/acis_ft_fptemp.perl >> $short_term/data_$stmp2[1]");
 }
 close(OUT);
 #

@@ -1,4 +1,4 @@
-#!/usr/bin/perl
+#!/usr/bin/env /usr/local/bin/perl
 use PGPLOT;
 
 #########################################################################################
@@ -14,7 +14,7 @@ use PGPLOT;
 #				new database format					#
 #		Feb 15, 2004	added three month plots					#
 #											#
-#		Last Update: Feb 25, 2013						#
+#		Last Update: Apr 16, 2013						#
 #											#
 #########################################################################################
 #
@@ -461,9 +461,9 @@ sub start_plot {
 #--- convert a ps file to a gif file
 #
 	$name = "$head"."_side_a.gif";
-	system("echo ''| $op_dir/gs -sDEVICE=pgmraw -sOutputFile=- -g2100x2769 -r256x256 -q pgplot.ps| $op_dir/pnmcrop| $op_dir/pnmscale -xsize 500| $op_dir/ppmquant 16| $op_dir/pnmpad -white -left=20 -right=20 -top=20 -bottom=20| $op_dir/pnmflip -r270| $op_dir/ppmtogif > $web_dir/Figs/$name");
+	system("echo ''| gs -sDEVICE=pgmraw -sOutputFile=- -g2100x2769 -r256x256 -q pgplot.ps|  pnmscale -xsize 500| ppmquant 16| pnmpad -white -left=20 -right=20 -top=20 -bottom=20| pnmflip -r270| ppmtogif > $web_dir/Figs/$name");
 
-	system("rm pgplot.ps");
+	system("rm -rf pgplot.ps");
 #
 #--- Side B plotting
 #
@@ -501,8 +501,8 @@ sub start_plot {
 #--- convert a ps file to a gif file
 #
 	$name = "$head"."_side_b.gif";
-	system("echo ''| $op_dir/gs -sDEVICE=pgmraw -sOutputFile=- -g2100x2769 -r256x256 -q pgplot.ps| $op_dir/pnmcrop| $op_dir/pnmscale -xsize 500| $op_dir/ppmquant 16| $op_dir/pnmpad -white -left=20 -right=20 -top=20 -bottom=20| $op_dir/pnmflip -r270| $op_dir/ppmtogif > $web_dir/Figs/$name");
-	system("rm pgplot.ps");
+	system("echo ''| gs -sDEVICE=pgmraw -sOutputFile=- -g2100x2769 -r256x256 -q pgplot.ps|  pnmscale -xsize 500| ppmquant 16| pnmpad -white -left=20 -right=20 -top=20 -bottom=20| pnmflip -r270| ppmtogif > $web_dir/Figs/$name");
+	system("rm -rf pgplot.ps");
 }
 
 ##################################

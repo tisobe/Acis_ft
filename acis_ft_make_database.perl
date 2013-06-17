@@ -1,4 +1,4 @@
-#!/usr/bin/perl
+#!/usr/bin/env /usr/local/bin/perl
 
 #########################################################################################
 #											#
@@ -13,7 +13,7 @@
 #	OCt 24, 2005:   bugged out and changed data spacing				#
 #	Feb  2, 2006:	a bug related year change fixed					#
 #											#
-#	Last Update: Feb 25, 2013							#
+#	Last Update: May 24, 2013							#
 #											#
 #########################################################################################
 
@@ -289,11 +289,12 @@ open(FH,"./zshort_term");
 @data_list =();
 while(<FH>) {
 	chomp $_;
-	@atemp = split(/Short_term\//,$_);
+#	@atemp = split(/Short_term\//,$_);
+	@atemp = split(/$short_term\//,$_);
 	push(@data_list, $atemp[1]);
 }
 close(FH);
-system("rm ./zshort_term");
+system("rm -rf ./zshort_term");
 
 $fcnt = 0;
 $ccnt = 0;
