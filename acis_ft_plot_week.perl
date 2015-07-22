@@ -8,7 +8,7 @@ use PGPLOT;
 #	author: Takashi Isobe							#
 #	March 27, 2000	first version						#
 #										#
-#	Last Update: Apr 16, 2013						#
+#	Last Update: Sep 03, 2014						#
 #										#
 #################################################################################
 
@@ -127,7 +127,7 @@ plot_fig();
 #
 #--- changing a ps-file to a gif-file
 #
-system("echo ''| gs -sDEVICE=pgmraw -sOutputFile=- -g2100x2769 -r256x256 -q pgplot.ps|  pnmscale -xsize 500| ppmquant 16| pnmpad -white -left=20 -right=20 -top=20 -bottom=20| /pnmflip -r270| ppmtogif > $web_dir/Figs/week_plot.gif");
+system("echo ''| gs -sDEVICE=pgmraw -sOutputFile=- -g2100x2769 -r256x256 -q pgplot.ps|  pnmscale -xsize 500| ppmquant 16| pnmpad -white -left=20 -right=20 -top=20 -bottom=20| pnmflip -r270| ppmtogif > $web_dir/Figs/week_plot.gif");
 
 system("rm -rf pgplot.ps");
 
